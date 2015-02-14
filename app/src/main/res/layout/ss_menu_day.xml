@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 Vitaliy Lim <lim.vitaliy@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ss_menu_day_date_shape"
+        android:src="@drawable/ss_menu_day_date_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/ss_menu_day_date_number"
+        android:layout_width="@dimen/ss_menu_day_date_shape_size"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_alignTop="@id/ss_menu_day_date_shape"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/white"
+        />
+
+    <TextView
+        android:id="@+id/ss_menu_day_date_month"
+        android:layout_width="@dimen/ss_menu_day_date_shape_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ss_menu_day_date_number"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textAllCaps="true"
+        />
+
+    <TextView
+        android:id="@+id/ss_menu_day_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_alignTop="@+id/ss_menu_day_date_number"
+        android:layout_toRightOf="@+id/ss_menu_day_date_shape"
+        android:layout_toEndOf="@+id/ss_menu_day_date_shape"
+        />
+
+    <TextView
+        android:id="@+id/ss_menu_day_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textAllCaps="true"
+        android:layout_alignTop="@+id/ss_menu_day_date_month"
+        android:layout_alignLeft="@+id/ss_menu_day_date"
+        android:layout_alignStart="@+id/ss_menu_day_date"/>
+</RelativeLayout>
