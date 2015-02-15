@@ -22,6 +22,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="#fff" android:state_selected="true" />
-    <item android:color="#9fff" />
+    <item android:color="@color/ss_tab_text_normal" android:state_selected="true" />
+    <item android:color="@color/ss_tab_text_selected" />
 </selector>
