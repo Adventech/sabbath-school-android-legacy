@@ -23,14 +23,14 @@
 
 <resources>
     <style name="SSAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimaryDark">#7e7bc5</item>
+        <item name="colorPrimaryDark">@color/ss_primary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowFullscreen">false</item>
     </style>
 
     <style name="SSToolbar" parent="Theme.AppCompat.NoActionBar">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small.Inverse</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/ss_toolbar_font_size</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="windowActionBar">false</item>
     </style>
