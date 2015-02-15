@@ -1,0 +1,3 @@
+[submodule "app/src/main/assets/sabbath-school-js"]
+	path = app/src/main/assets/sabbath-school-js
+	url = https://v1talik@bitbucket.org/v1talik/sabbath-school-js.git
