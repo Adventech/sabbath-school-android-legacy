@@ -151,7 +151,7 @@ public class SSWebViewFragment extends Fragment {
                     _SSTabs.setTranslationY(scrollY);
                 }
 
-                SparseArray<Fragment> registeredFragments = ((SSMainActivity.MyPagerAdapter) ((SSMainActivity) getActivity()).getPager().getAdapter()).registeredFragments;
+                SparseArray<Fragment> registeredFragments = ((SSMainActivity.SSTabsAdapter) ((SSMainActivity) getActivity()).getPager().getAdapter()).registeredFragments;
                 for (int i = 0; i < registeredFragments.size(); i++) {
                     if (i == position) continue;
                     ((SSWebViewFragment) (registeredFragments.get(i)))._SSWebView._SSOnScrollChangedCallbackEnabled = false;

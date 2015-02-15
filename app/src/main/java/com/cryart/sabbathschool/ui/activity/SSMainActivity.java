@@ -52,6 +52,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class SSMainActivity extends ActionBarActivity {
+    private final int SS_PAGER_OFFSCREEN_LIMIT = 7;
+
+
     private ActionBarDrawerToggle _SSActionBarToggle;
     private DrawerLayout _SSDrawerLayout;
     private SSSlidingTabLayout _SSTabs;
@@ -59,6 +62,7 @@ public class SSMainActivity extends ActionBarActivity {
     private ViewPager _SSPager;
     private View _SSStatusBar;
     private ExpandableListView _SSMenu;
+
 
     private void setupWidgets(){
         _SSDrawerLayout = (DrawerLayout) findViewById(R.id.ss_main_layout);
@@ -84,9 +88,9 @@ public class SSMainActivity extends ActionBarActivity {
         _SSDrawerLayout.setDrawerListener(_SSActionBarToggle);
         _SSDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
 
-        _SSPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        _SSPager.setAdapter(new SSTabsAdapter(getSupportFragmentManager()));
 
-        _SSPager.setOffscreenPageLimit(7);
+        _SSPager.setOffscreenPageLimit(SS_PAGER_OFFSCREEN_LIMIT);
 
         ViewGroup.LayoutParams lp = _SSStatusBar.getLayoutParams();
         lp.height = (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ? SSHelper.getStatusBarHeight(this) : 0;
@@ -144,22 +148,22 @@ public class SSMainActivity extends ActionBarActivity {
         return _SSPager;
     }
 
-    public class MyPagerAdapter extends FragmentPagerAdapter {
-        public SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
-        private final String[] TITLES = { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+    public class SSTabsAdapter extends FragmentPagerAdapter {
+        public SparseArray<Fragment> registeredFragments = new SparseArray<>();
+        private final String[] _SSTabTitles = getResources().getStringArray(R.array.ss_tabs);
 
-        public MyPagerAdapter(FragmentManager fm) {
+        public SSTabsAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return TITLES[position];
+            return _SSTabTitles[position];
         }
 
         @Override
         public int getCount() {
-            return TITLES.length;
+            return _SSTabTitles.length;
         }
 
         @Override
