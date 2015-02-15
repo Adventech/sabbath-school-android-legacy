@@ -28,24 +28,24 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <com.flaviofaria.kenburnsview.KenBurnsView
             android:id="@+id/ss_hero"
+            android:layout_height="@dimen/ss_hero_height"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
             android:src="@drawable/t_049" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:fitsSystemWindows="true"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:layout_width="match_parent">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/ss_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
 
             <include
                 android:id="@+id/ss_toolbar"
@@ -55,32 +55,32 @@
 
         <View
             android:id="@+id/ss_status_bar"
+            android:background="@color/ss_status_bar"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:background="#7e7bc5" />
+            android:layout_height="@dimen/ss_status_bar_height" />
 
         <com.cryart.sabbathschool.ui.widget.SSSlidingTabLayout
             android:id="@+id/ss_tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_below="@id/ss_hero"
-            android:background="@color/ss_primary"/>
+            android:background="@color/ss_tabs"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:background="@color/ss_menu"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#fff">
+        android:layout_width="@dimen/ss_menu_width"
+        android:layout_gravity="start">
 
         <ExpandableListView
-            android:divider="@null"
             android:id="@+id/ss_menu"
+            android:divider="@null"
             android:drawSelectorOnTop="true"
-            android:layout_width="match_parent"
             android:groupIndicator="@null"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
 
     </RelativeLayout>
 

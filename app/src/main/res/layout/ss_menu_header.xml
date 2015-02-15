@@ -23,27 +23,29 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_height="140dp"
+        android:layout_height="@dimen/ss_menu_header_height"
         android:layout_width="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/pb_menu_header_background" />
+        android:src="@drawable/pb_menu_header_background"
+        tools:ignore="contentDescription" />
 
     <TextView
         android:id="@+id/ss_menu_lesson_name"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:textAllCaps="true"
-        android:singleLine="true"
         android:ellipsize="end"
-        android:textSize="15sp" />
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/ss_menu_header_lesson_name_padding"
+        android:singleLine="true"
+        android:textAllCaps="true"
+        android:textColor="@color/ss_menu_header_lesson_name"
+        android:textSize="@dimen/ss_menu_header_lesson_name_font_size"
+        android:textStyle="bold" />
 
 </RelativeLayout>
