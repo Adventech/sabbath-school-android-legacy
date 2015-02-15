@@ -24,4 +24,14 @@
     <string name="ss_app_name">Sabbath School</string>
     <string name="ss_navigation_menu_open">Open Menu</string>
     <string name="ss_navigation_menu_close">Close Menu</string>
+
+    <string-array name="ss_tabs">
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
 </resources>
