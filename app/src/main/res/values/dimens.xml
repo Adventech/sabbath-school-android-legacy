@@ -22,5 +22,28 @@
   -->
 
 <resources>
+    <dimen name="ss_toolbar_font_size">12sp</dimen>
+    <dimen name="ss_hero_height">200dp</dimen>
+    <dimen name="ss_status_bar_height">25dp</dimen>
+
+    <dimen name="ss_tab_padding">16dp</dimen>
+    <dimen name="ss_tab_height">48dp</dimen>
+    <dimen name="ss_tab_font_size">12sp</dimen>
+
+    <dimen name="ss_menu_width">300dp</dimen>
     <dimen name="ss_menu_day_date_shape_size">44dp</dimen>
+    <dimen name="ss_menu_day_padding">10dp</dimen>
+
+    <dimen name="ss_menu_header_height">140dp</dimen>
+    <dimen name="ss_menu_header_lesson_name_padding">15dp</dimen>
+    <dimen name="ss_menu_header_lesson_name_font_size">15sp</dimen>
+
+    <dimen name="ss_menu_day_date_number_margin_top">5dp</dimen>
+    <dimen name="ss_menu_day_date_number_font_size">15sp</dimen>
+
+    <dimen name="ss_menu_day_date_month_font_size">12sp</dimen>
+    <dimen name="ss_menu_day_date_font_size">12sp</dimen>
+    <dimen name="ss_menu_day_date_margin_left">19dp</dimen>
+    <dimen name="ss_menu_day_name_font_size">15sp</dimen>
+
 </resources>
