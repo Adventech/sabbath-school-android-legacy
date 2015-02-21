@@ -23,10 +23,19 @@
 package com.cryart.sabbathschool.ui.widget;
 
 import android.content.Context;
+import android.view.ActionMode;
 import android.util.AttributeSet;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.ViewParent;
 import android.webkit.WebView;
 
+import com.cryart.sabbathschool.R;
+
 public class SSWebView extends WebView {
+    private ActionMode _SSActionMode;
+    private ActionMode.Callback _SSActionModeCallback;
     public boolean _SSOnScrollChangedCallbackEnabled = true;
 
     protected Context _SSContext;
@@ -64,10 +73,57 @@ public class SSWebView extends WebView {
     }
 
     @Override
-    public boolean performLongClick() {
-
-        // TODO: show / hide selection
-        return true;
+    public ActionMode startActionMode(ActionMode.Callback callback) {
+        ViewParent parent = getParent();
+        if (parent == null) {
+            return null;
+        }
+        _SSActionModeCallback = new SSActionModeCallback();
+        return parent.startActionModeForChild(this, _SSActionModeCallback);
     }
 
+    private class SSActionModeCallback implements ActionMode.Callback {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.ss_webview_menu, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.ss_webview_menu_highlight:
+                    loadUrl("javascript:ss.highlight();");
+                    break;
+                case R.id.ss_webview_menu_highlight_remove:
+                    loadUrl("javascript:ss.unHighlight();");
+                    break;
+                case R.id.ss_webview_menu_copy:
+                    loadUrl("javascript:ss.copy();");
+                    break;
+                case R.id.ss_webview_menu_share:
+                    loadUrl("javascript:ss.share();");
+                    break;
+                case R.id.ss_webview_menu_search:
+                    loadUrl("javascript:ss.search();");
+                    break;
+                default:
+                    return false;
+            }
+            mode.finish();
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            clearFocus();
+            _SSActionMode = null;
+        }
+    }
 }
