@@ -23,6 +23,7 @@
 package com.cryart.sabbathschool.adapters;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ import android.widget.TextView;
 import com.cryart.sabbathschool.R;
 import com.cryart.sabbathschool.model.SSDay;
 import com.cryart.sabbathschool.model.SSLesson;
+import com.cryart.sabbathschool.model.SSMenuMiscItem;
+import com.cryart.sabbathschool.util.SSConstants;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,6 +54,12 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.menu = menu;
         this.menuList = new ArrayList<List<?>>(menu.values());
+    }
+
+    public void setMenu(LinkedHashMap<?, ArrayList<?>> menu){
+        this.menu = menu;
+        this.menuList = new ArrayList<List<?>>(menu.values());
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -101,9 +110,16 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
 
         if (getChildrenCount(groupPosition) > 0){
             view = inflater.inflate(R.layout.ss_menu_header, null);
+            TextView SSMenuLessonDate = (TextView) view.findViewById(R.id.ss_menu_lesson_date);
             TextView SSMenuLessonName = (TextView) view.findViewById(R.id.ss_menu_lesson_name);
+            TextView SSMenuLessonIndicator = (TextView) view.findViewById(R.id.ss_menu_lesson_indicator);
+            SSMenuLessonIndicator.setTypeface(Typeface.createFromAsset(context.getAssets(), SSConstants.SS_MATERIAL_ICON_FONT_PATH));
+
+            SSMenuLessonDate.setText(((SSLesson)menuItemGroup)._lesson_date_text);
             SSMenuLessonName.setText(((SSLesson)menuItemGroup)._lesson_name);
-        } else {
+            SSMenuLessonIndicator.setText(isExpanded ? R.string.ss_menu_header_indicator_less : R.string.ss_menu_header_indicator_more);
+
+        } else if (menuItemGroup instanceof SSDay){
             view = inflater.inflate(R.layout.ss_menu_day, null);
             TextView SSMenuDayName = (TextView) view.findViewById(R.id.ss_menu_day_name);
             TextView SSMenuDayDate = (TextView) view.findViewById(R.id.ss_menu_day_date);
@@ -121,6 +137,16 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
 
             SSMenuDayName.setText(((SSDay)menuItemGroup)._day_name);
             SSMenuDayDate.setText(((SSDay)menuItemGroup)._day_date_text);
+        } else if (menuItemGroup instanceof String) {
+            view = inflater.inflate(R.layout.ss_menu_divider, null);
+        } else {
+            view = inflater.inflate(R.layout.ss_menu_misc, null);
+            TextView _SSSubMenuIcon = (TextView) view.findViewById(R.id.ss_menu_misc_icon);
+            TextView _SSSubMenuTitle = (TextView) view.findViewById(R.id.ss_menu_misc_title);
+            _SSSubMenuIcon.setTypeface(Typeface.createFromAsset(context.getAssets(), SSConstants.SS_MATERIAL_ICON_FONT_PATH));
+
+            _SSSubMenuIcon.setText(((SSMenuMiscItem)menuItemGroup)._SSMenuMiscIcon);
+            _SSSubMenuTitle.setText(((SSMenuMiscItem)menuItemGroup)._SSMenuMiscTitle);
         }
 
         return view;
@@ -133,7 +159,10 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
 
         view = inflater.inflate(R.layout.ss_menu_lesson, null);
 
+        TextView SSMenuLessonDate = (TextView) view.findViewById(R.id.ss_menu_lesson_date);
         TextView SSMenuLessonName = (TextView) view.findViewById(R.id.ss_menu_lesson_name);
+
+        SSMenuLessonDate.setText(lesson._lesson_date_text);
         SSMenuLessonName.setText(lesson._lesson_name);
 
         return view;
