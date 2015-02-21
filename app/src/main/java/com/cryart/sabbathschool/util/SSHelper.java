@@ -23,6 +23,11 @@
 package com.cryart.sabbathschool.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.util.Base64;
+import android.util.DisplayMetrics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,10 +66,46 @@ public class SSHelper {
      */
     public static int getStatusBarHeight(Context context) {
         int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = context.getResources().getDimensionPixelSize(resourceId);
+            }
         }
+
         return result;
+    }
+
+    /**
+     * Returns Bitmap representation of the decoded byte sequence from base64 input string
+     * @param input Base64 encoded image
+     * @return Bitmap image
+     */
+    public static Bitmap getBitmapFromBase64(String input){
+        byte[] decodedString = Base64.decode(input, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
+    /**
+     * Converts DP value to pixels value according to the DisplayMetric's current density
+     * @param context Context that will be used to retrieve DisplayMetrics
+     * @param dp Value to be converted
+     * @return Pixel-value of the input dp
+     */
+    public static int convertDpToPixels(Context context, int dp){
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    /**
+     * Converts Pixel value to DP value according to the DisplayMetric's current density
+     * @param context Context that will be used to retrieve DisplayMetrics
+     * @param px Value to be converted
+     * @return DP value of the input px
+     */
+    public static int convertPixelsToDp(Context context, int px){
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 }
