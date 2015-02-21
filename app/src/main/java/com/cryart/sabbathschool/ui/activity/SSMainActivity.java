@@ -22,17 +22,17 @@
 
 package com.cryart.sabbathschool.ui.activity;
 
-import android.os.Build;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,18 +42,25 @@ import android.widget.ExpandableListView;
 
 import com.cryart.sabbathschool.R;
 import com.cryart.sabbathschool.adapters.SSMenuAdapter;
+import com.cryart.sabbathschool.adapters.SSTabsAdapter;
 import com.cryart.sabbathschool.model.SSDay;
 import com.cryart.sabbathschool.model.SSLesson;
-import com.cryart.sabbathschool.ui.fragment.SSWebViewFragment;
+import com.cryart.sabbathschool.model.SSMenuMiscItem;
 import com.cryart.sabbathschool.ui.widget.SSSlidingTabLayout;
+import com.cryart.sabbathschool.util.SSConstants;
+import com.cryart.sabbathschool.util.SSCore;
 import com.cryart.sabbathschool.util.SSHelper;
+import com.cryart.sabbathschool.util.SSMenuMisc;
+import com.flaviofaria.kenburnsview.KenBurnsView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class SSMainActivity extends ActionBarActivity {
-    private final int SS_PAGER_OFFSCREEN_LIMIT = 7;
+public class SSMainActivity extends ActionBarActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    private int SS_TOOLBAR_STATUS_BAR_ALPHA = 0;
 
+    private SharedPreferences _SSPreferences;
+    private Handler _SSHandler = new Handler();
 
     private ActionBarDrawerToggle _SSActionBarToggle;
     private DrawerLayout _SSDrawerLayout;
@@ -62,7 +69,11 @@ public class SSMainActivity extends ActionBarActivity {
     private ViewPager _SSPager;
     private View _SSStatusBar;
     private ExpandableListView _SSMenu;
+    private KenBurnsView _SSHero;
 
+    private SSLesson _SSCurrentLesson;
+    private ArrayList<SSDay> _SSDays;
+    private SSCore _SSCore;
 
     private void setupWidgets(){
         _SSDrawerLayout = (DrawerLayout) findViewById(R.id.ss_main_layout);
@@ -72,53 +83,118 @@ public class SSMainActivity extends ActionBarActivity {
         _SSStatusBar = findViewById(R.id.ss_status_bar);
         _SSTabs = (SSSlidingTabLayout) findViewById(R.id.ss_tabs);
         _SSMenu = (ExpandableListView) findViewById(R.id.ss_menu);
+        _SSHero = (KenBurnsView) findViewById(R.id.ss_hero);
+
+        _SSCore = SSCore.getInstance(this);
+        _SSPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    public void setHeroView(){
+        _SSHero.resume();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                        _SSHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(_SSPreferences.getBoolean(SSConstants.SS_SETTINGS_KEN_BURNS_EFFECT_KEY, SSConstants.SS_SETTINGS_KEN_BURNS_EFFECT_DEFAULT_VALUE)) _SSHero.resume(); else _SSHero.pause();
+                            }
+                        });
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                }
+            }
+        }).start();
+    }
+
+    private void setMainView(){
+        _SSCurrentLesson = _SSCore.ssGetTodaysLesson();
+        _SSDays = _SSCore.ssGetDaysByLessonSerial(_SSCurrentLesson._serial);
+        ((SSTabsAdapter)_SSPager.getAdapter()).setDays(_SSDays);
+        this.setMenuItems();
+    }
+
+    private void setMenuItems(){
+        ((SSMenuAdapter)_SSMenu.getExpandableListAdapter()).setMenu(
+            new LinkedHashMap<Object, ArrayList<?>>(){{
+                put(_SSCurrentLesson, _SSCore.ssGetLessons());
+                for (SSDay ssDay : _SSDays){
+                    put(ssDay, new ArrayList<>());
+                }
+                put(SSMenuMisc.SS_MENU_MISC_ITEM_DIVIDER, new ArrayList<>());
+                put(SSMenuMisc.SS_MENU_MISC_ITEM_SETTINGS, new ArrayList<>());
+                put(SSMenuMisc.SS_MENU_MISC_ITEM_ABOUT, new ArrayList<>());
+            }}
+        );
+    }
+
+    public void setToolbarStatusBarAlpha(int alpha){
+        SS_TOOLBAR_STATUS_BAR_ALPHA = alpha;
+        _SSToolbar.getBackground().setAlpha(alpha);
+        _SSStatusBar.getBackground().setAlpha(alpha);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (_SSDrawerLayout.isDrawerOpen(Gravity.START)){
+            _SSDrawerLayout.closeDrawer(Gravity.START);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        setToolbarStatusBarAlpha(SS_TOOLBAR_STATUS_BAR_ALPHA);
+        super.onResume();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.ss_main_activity);
         setupWidgets();
 
         setSupportActionBar(_SSToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         _SSActionBarToggle.setDrawerIndicatorEnabled(true);
 
         _SSDrawerLayout.setDrawerListener(_SSActionBarToggle);
-        _SSDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+        _SSDrawerLayout.setDrawerShadow(R.drawable.ss_menu_shadow, Gravity.START);
 
-        _SSPager.setAdapter(new SSTabsAdapter(getSupportFragmentManager()));
+        _SSCurrentLesson = _SSCore.ssGetTodaysLesson();
+        _SSDays = _SSCore.ssGetDaysByLessonSerial(_SSCurrentLesson._serial);
 
-        _SSPager.setOffscreenPageLimit(SS_PAGER_OFFSCREEN_LIMIT);
+        _SSPager.setAdapter(new SSTabsAdapter(this, getSupportFragmentManager(), new ArrayList<SSDay>()));
+
+        _SSPager.setOffscreenPageLimit(SSConstants.SS_PAGER_OFFSCREEN_PAGE_LIMIT);
 
         ViewGroup.LayoutParams lp = _SSStatusBar.getLayoutParams();
-        lp.height = (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ? SSHelper.getStatusBarHeight(this) : 0;
+        lp.height = SSHelper.getStatusBarHeight(this);
         _SSStatusBar.setLayoutParams(lp);
 
         _SSTabs.setCustomTabView(R.layout.ss_tab_indicator, android.R.id.text1);
         _SSTabs.setViewPager(_SSPager);
 
-        _SSToolbar.getBackground().setAlpha(0);
-        _SSStatusBar.getBackground().setAlpha(0);
+        setToolbarStatusBarAlpha(SS_TOOLBAR_STATUS_BAR_ALPHA);
         _SSTabs.setBackgroundColor(getResources().getColor(R.color.ss_primary));
 
-        _SSMenu.setAdapter(new SSMenuAdapter(this, new LinkedHashMap<Object, ArrayList<?>>(){{
-            put(new SSLesson(1, "Lesson 1. Judging", "1"), new ArrayList<Object>(){{
-                add(new SSLesson(1, "1", "1"));
-            }});
-            put(new SSDay(1, "2015-01-01", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-02", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-03", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-04", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-05", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-06", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-07", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-08", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-09", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-10", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-            put(new SSDay(1, "2015-01-11", "A Matter of Life and Death", "Saturday. January 1"), new ArrayList<>());
-        }}));
+        _SSMenu.setAdapter(new SSMenuAdapter(this, new LinkedHashMap<Object, ArrayList<?>>()));
+
+        this.setMainView();
+        this.setTab(_SSCore.ssGetDay(_SSCore.ssTodaysDate()));
+
+        _SSMenu.setOnGroupClickListener(this);
+        _SSMenu.setOnChildClickListener(this);
+        _SSPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -128,8 +204,20 @@ public class SSMainActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onDestroy(){
+        _SSPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        setHeroView();
     }
 
     @Override
@@ -148,34 +236,74 @@ public class SSMainActivity extends ActionBarActivity {
         return _SSPager;
     }
 
-    public class SSTabsAdapter extends FragmentPagerAdapter {
-        public SparseArray<Fragment> registeredFragments = new SparseArray<>();
-        private final String[] _SSTabTitles = getResources().getStringArray(R.array.ss_tabs);
+    @Override
+    public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long id) {
+        _SSCurrentLesson = (SSLesson) _SSMenu.getExpandableListAdapter().getChild(groupPosition, childPosition);
+        _SSDays = _SSCore.ssGetDaysByLessonSerial(_SSCurrentLesson._serial);
+        this.setMenuItems();
+        _SSMenu.collapseGroup(groupPosition);
+        return true;
+    }
 
-        public SSTabsAdapter(FragmentManager fm) {
-            super(fm);
+    private boolean setTab(SSDay selected){
+        int _page = 0;
+        for (SSDay day : ((SSTabsAdapter) _SSPager.getAdapter())._SSDays) {
+            if (day._day_date.equalsIgnoreCase(selected._day_date)){
+                _SSPager.setCurrentItem(_page, true);
+                return true;
+            }
+            _page++;
         }
+        return false;
+    }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return _SSTabTitles[position];
+    @Override
+    public boolean onGroupClick(ExpandableListView expandableListView, View view, int groupPosition, long id) {
+        Object selected = _SSMenu.getExpandableListAdapter().getGroup(groupPosition);
+
+        if (selected instanceof SSDay) {
+            if (!setTab((SSDay)selected)){
+                ((SSTabsAdapter) _SSPager.getAdapter()).setDays(_SSDays);
+                setTab((SSDay)selected);
+            }
+
+            _SSDrawerLayout.closeDrawers();
+            return true;
+        } else if (selected instanceof SSMenuMiscItem){
+            if (selected == SSMenuMisc.SS_MENU_MISC_ITEM_SETTINGS){
+                Intent intent = new Intent(SSMainActivity.this, SSSettingsActivity.class);
+                SSMainActivity.this.startActivity(intent);
+            }
+
+            if (selected == SSMenuMisc.SS_MENU_MISC_ITEM_ABOUT){
+                Intent intent = new Intent(SSMainActivity.this, SSAboutActivity.class);
+                SSMainActivity.this.startActivity(intent);
+            }
+            _SSDrawerLayout.closeDrawers();
+            return true;
         }
+        return false;
+    }
 
-        @Override
-        public int getCount() {
-            return _SSTabTitles.length;
-        }
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        switch(s){
+            case SSConstants.SS_SETTINGS_LANGUAGE_KEY: {
+                SSCore.refreshLanguage();
 
-        @Override
-        public Fragment getItem(int position) {
-            return SSWebViewFragment.newInstance(position);
-        }
+                if (!_SSCore.quarterlyForLanguageExists()){
+                    Intent i = new Intent(getApplicationContext(), SSLoadingActivity.class);
+                    startActivity(i);
+                } else {
+                    this.setMainView();
+                }
+                break;
+            }
 
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            Fragment fragment = (Fragment) super.instantiateItem(container, position);
-            registeredFragments.put(position, fragment);
-            return fragment;
+            case SSConstants.SS_SETTINGS_KEN_BURNS_EFFECT_KEY: {
+                this.setHeroView();
+                break;
+            }
         }
     }
 }
