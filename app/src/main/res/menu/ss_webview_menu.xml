@@ -24,6 +24,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/ss_webview_menu_highlight"
-        android:title="Highlight"
-        />
+        android:icon="@drawable/ss_ic_border_color_white_24dp"
+        android:orderInCategory="1"
+        android:showAsAction="always|withText"
+        android:title="@string/ss_webview_menu_highlight"/>
+
+    <item
+        android:id="@+id/ss_webview_menu_highlight_remove"
+        android:icon="@drawable/ss_ic_format_color_reset_white_24dp"
+        android:orderInCategory="2"
+        android:showAsAction="always|withText"
+        android:title="@string/ss_webview_menu_remove_highlight" />
+
+    <item
+        android:id="@+id/ss_webview_menu_share"
+        android:showAsAction="always"
+        android:icon="@drawable/ss_ic_share_white_24dp"
+        android:orderInCategory="3"
+        android:title="@string/ss_webview_menu_share" />
+
+    <item
+        android:id="@+id/ss_webview_menu_copy"
+        android:icon="@drawable/ss_ic_content_copy_white_24dp"
+        android:orderInCategory="4"
+        android:title="@string/ss_webview_menu_copy" />
+
+    <item
+        android:id="@+id/ss_webview_menu_search"
+        android:icon="@drawable/ss_ic_search_white_24dp"
+        android:orderInCategory="5"
+        android:title="@string/ss_webview_menu_search" />
 </menu>
