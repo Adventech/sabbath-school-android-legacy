@@ -25,6 +25,8 @@
     <string name="ss_navigation_menu_open">Open Menu</string>
     <string name="ss_navigation_menu_close">Close Menu</string>
 
+    <string name="ss_menu_lesson">Lesson</string>
+
     <string-array name="ss_tabs">
         <item>Saturday</item>
         <item>Sunday</item>
@@ -34,4 +36,39 @@
         <item>Thursday</item>
         <item>Friday</item>
     </string-array>
+
+    <string name="ss_menu_header_indicator_more">&#xe08c;</string>
+    <string name="ss_menu_header_indicator_less">&#xe08b;</string>
+
+    <string name="ss_menu_misc_settings_icon">&#xe145;</string>
+    <string name="ss_menu_misc_settings_title">Settings</string>
+
+    <string name="ss_menu_misc_about_icon">&#xe0bf;</string>
+    <string name="ss_menu_misc_about_title">About</string>
+
+    <string name="ss_webview_menu_highlight">Highlight</string>
+    <string name="ss_webview_menu_search">Search</string>
+    <string name="ss_webview_menu_copy">Copy</string>
+    <string name="ss_webview_menu_copied">Copied</string>
+    <string name="ss_webview_menu_share">Share</string>
+    <string name="ss_webview_menu_share_text_to">Share selection to</string>
+    <string name="ss_webview_menu_remove_highlight">Remove Highlight</string>
+
+    <string name="ss_bible_verse_activity_title">Bible Verse</string>
+
+    <string name="ss_setings">Settings</string>
+    <string name="ss_settings_general">General</string>
+    <string name="ss_settings_text_size">Text Size</string>
+    <string name="ss_settings_lesson_language">Lesson Language</string>
+
+    <string name="ss_about">About</string>
+    <string name="ss_about_love_your_neighbor">ואהבת לרעך כמוך</string>
+    <string name="ss_about_menu_instagram_icon">&#xf16d;</string>
+    <string name="ss_about_menu_instagram_title">\@v1talique</string>
+
+    <string name="ss_about_menu_twitter_icon">&#xf099;</string>
+    <string name="ss_about_menu_twitter_title">\@vitalik_l</string>
+
+    <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
+    <string name="ss_about_menu_photo_credits_title">Photo credits \@asimsness</string>
 </resources>

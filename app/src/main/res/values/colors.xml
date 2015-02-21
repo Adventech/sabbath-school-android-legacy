@@ -22,16 +22,25 @@
   -->
 
 <resources>
-    <color name="ss_primary">#7e7bc5</color>
+    <color name="ss_primary">#088667</color>
+    <color name="ss_primary_cab">#088668</color>
     <color name="ss_accent">#ffffff</color>
 
-    <color name="ss_status_bar">#7e7bc5</color>
-    <color name="ss_tabs">#7e7bc5</color>
+    <color name="ss_status_bar">#088667</color>
+    <color name="ss_tabs">#088667</color>
     <color name="ss_tab_text_normal">#ffffff</color>
     <color name="ss_tab_text_selected">#9fff</color>
     <color name="ss_menu">#ffffff</color>
 
     <color name="ss_menu_header_lesson_name">#ffffff</color>
+
+    <color name="ss_menu_lesson">#ff073b2b</color>
+    <color name="ss_menu_lesson_date">#ffffff</color>
+    <color name="ss_menu_lesson_name">#ffffff</color>
+
     <color name="ss_menu_day_date_number">#ffffff</color>
     <color name="ss_menu_day_date_month">#ffffff</color>
+    <color name="ss_menu_misc_divider">#efefef</color>
+
+    <color name="ss_bible_verse_activity_title">#ffffff</color>
 </resources>

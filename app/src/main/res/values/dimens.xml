@@ -31,19 +31,63 @@
     <dimen name="ss_tab_font_size">12sp</dimen>
 
     <dimen name="ss_menu_width">300dp</dimen>
-    <dimen name="ss_menu_day_date_shape_size">44dp</dimen>
-    <dimen name="ss_menu_day_padding">10dp</dimen>
 
-    <dimen name="ss_menu_header_height">140dp</dimen>
-    <dimen name="ss_menu_header_lesson_name_padding">15dp</dimen>
+    <dimen name="ss_menu_header_height">120dp</dimen>
+    <dimen name="ss_menu_header_lesson_date_margin_left">20dp</dimen>
+    <dimen name="ss_menu_header_lesson_date_margin_right">20dp</dimen>
+    <dimen name="ss_menu_header_lesson_date_margin_top">5dp</dimen>
+    <dimen name="ss_menu_header_lesson_date_margin_bottom">0dp</dimen>
+    <dimen name="ss_menu_header_lesson_date_font_size">12sp</dimen>
+    <dimen name="ss_menu_header_lesson_name_margin_left">20dp</dimen>
+    <dimen name="ss_menu_header_lesson_name_margin_right">20dp</dimen>
+    <dimen name="ss_menu_header_lesson_name_margin_top">5dp</dimen>
+    <dimen name="ss_menu_header_lesson_name_margin_bottom">20dp</dimen>
     <dimen name="ss_menu_header_lesson_name_font_size">15sp</dimen>
 
-    <dimen name="ss_menu_day_date_number_margin_top">5dp</dimen>
-    <dimen name="ss_menu_day_date_number_font_size">15sp</dimen>
+    <dimen name="ss_menu_lesson_padding_top">10dp</dimen>
+    <dimen name="ss_menu_lesson_padding_bottom">10dp</dimen>
+    <dimen name="ss_menu_lesson_padding_left">20dp</dimen>
+    <dimen name="ss_menu_lesson_padding_right">10dp</dimen>
+    <dimen name="ss_menu_lesson_date_text_size">12sp</dimen>
+    <dimen name="ss_menu_lesson_name_text_size">15sp</dimen>
 
-    <dimen name="ss_menu_day_date_month_font_size">12sp</dimen>
+    <dimen name="ss_menu_day_date_shape_size">43dp</dimen>
+    <dimen name="ss_menu_day_padding">20dp</dimen>
+
+    <dimen name="ss_menu_day_date_number_margin_top">4dp</dimen>
+    <dimen name="ss_menu_day_date_number_font_size">15sp</dimen>
+    <dimen name="ss_menu_day_date_month_margin_top">-4dp</dimen>
+    <dimen name="ss_menu_day_date_month_font_size">11sp</dimen>
     <dimen name="ss_menu_day_date_font_size">12sp</dimen>
     <dimen name="ss_menu_day_date_margin_left">19dp</dimen>
-    <dimen name="ss_menu_day_name_font_size">15sp</dimen>
+    <dimen name="ss_menu_day_name_font_size">14sp</dimen>
+
+    <dimen name="ss_menu_misc_divider_padding">5dp</dimen>
+    <dimen name="ss_menu_misc_divider_height">1dp</dimen>
+
+    <dimen name="ss_menu_misc_padding_top">10dp</dimen>
+    <dimen name="ss_menu_misc_padding_bottom">10dp</dimen>
+    <dimen name="ss_menu_misc_padding_left">20dp</dimen>
+    <dimen name="ss_menu_misc_padding_right">10dp</dimen>
+    <dimen name="ss_menu_misc_icon_size">25sp</dimen>
+    <dimen name="ss_menu_misc_title_margin_left">10dp</dimen>
+    <dimen name="ss_menu_misc_title_text_size">12sp</dimen>
+
+    <dimen name="ss_bible_verse_activity_padding_top">60dp</dimen>
+    <dimen name="ss_bible_verse_activity_padding_bottom">60dp</dimen>
+    <dimen name="ss_bible_verse_activity_padding_left">10dp</dimen>
+    <dimen name="ss_bible_verse_activity_padding_right">10dp</dimen>
+    <dimen name="ss_bible_verse_activity_title_text_size">16sp</dimen>
+    <dimen name="ss_bible_verse_activity_title_padding">20dp</dimen>
+    <dimen name="ss_bible_verse_activity_close_button_padding">18dp</dimen>
+    <dimen name="ss_bible_verse_activity_window_corner_radius">3dp</dimen>
+
+    <dimen name="ss_about_menu_padding_top">10dp</dimen>
+    <dimen name="ss_about_menu_padding_bottom">10dp</dimen>
+    <dimen name="ss_about_menu_padding_left">20dp</dimen>
+    <dimen name="ss_about_menu_padding_right">10dp</dimen>
+    <dimen name="ss_about_menu_icon_size">16sp</dimen>
+    <dimen name="ss_about_menu_title_margin_left">10dp</dimen>
+    <dimen name="ss_about_menu_title_text_size">12sp</dimen>
 
 </resources>
