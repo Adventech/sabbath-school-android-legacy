@@ -23,15 +23,28 @@
 
 <resources>
     <style name="SSAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimaryDark">@color/ss_primary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowFullscreen">false</item>
     </style>
 
     <style name="SSToolbar" parent="Theme.AppCompat.NoActionBar">
+        <item name="actionModeBackground">@color/ss_primary_cab</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:actionModeBackground">@color/ss_primary_cab</item>
+
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small.Inverse</item>
         <item name="android:textSize">@dimen/ss_toolbar_font_size</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="SSBibleVerseActivity" parent="SSAppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 </resources>
