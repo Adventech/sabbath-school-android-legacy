@@ -23,14 +23,73 @@
 package com.cryart.sabbathschool.ui.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.cryart.sabbathschool.R;
+import com.cryart.sabbathschool.util.SSConstants;
+import com.cryart.sabbathschool.util.SSCore;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Locale;
 
 public class SSLoadingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ss_loading_activity);
+
+        SharedPreferences ssPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String[] _SSSupportedLanguages = getResources().getStringArray(R.array.ss_settings_lesson_language_values);
+
+        if (ssPreferences.getString(SSConstants.SS_SETTINGS_LANGUAGE_KEY, null) == null){
+            String _SSLanguage = Locale.getDefault().getLanguage();
+            if (Arrays.asList(_SSSupportedLanguages).contains(_SSLanguage)) {
+                _SSLanguage = SSConstants.SS_SETTINGS_FALLBACK_LANGUAGE;
+            }
+            ssPreferences.edit().putString(SSConstants.SS_SETTINGS_LANGUAGE_KEY, _SSLanguage).commit();
+        }
+
+        PreferenceManager.setDefaultValues(this, R.xml.ss_settings, false);
+
+        new QuarterlyDownloader(this).execute();
+    }
+
+    private class QuarterlyDownloader extends AsyncTask<Void, Void, Boolean> {
+        private Context context;
+
+        public QuarterlyDownloader(Context context){
+            this.context = context;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params){
+            SSCore ss_core = SSCore.getInstance(this.context);
+
+            try {
+                ss_core.copyDataBaseIfNeeded();
+            } catch (IOException e){}
+
+            return ss_core.downloadIfNeeded();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (!result) {
+                Log.v("Error downloading", "Error downloading");
+            } else {
+                Intent i = new Intent(getApplicationContext(), SSMainActivity.class);
+                startActivity(i);
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {}
     }
 }
