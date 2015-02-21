@@ -27,6 +27,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 
 import com.cryart.sabbathschool.model.SSDay;
 import com.cryart.sabbathschool.model.SSLesson;
@@ -51,19 +52,32 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class SSCore extends SQLiteOpenHelper {
-    private static String ssTodayDate = null;
-    private static final String LANGUAGE = Locale.getDefault().getLanguage().equalsIgnoreCase("ru") || Locale.getDefault().getLanguage().equalsIgnoreCase("uk") ? "ru" : "en";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "SabbathSchool.db";
-    private final Context context;
+
+    private static SSCore ssInstance = null;
+    private static String ssTodayDate = null;
+    private static String LANGUAGE;
+    private static Context context;
 
     public SSCore(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
+        SSCore.context = context;
+        SSCore.refreshLanguage();
+    }
+
+    public static void refreshLanguage(){
+        SSCore.LANGUAGE = PreferenceManager.getDefaultSharedPreferences(SSCore.context).getString(SSConstants.SS_SETTINGS_LANGUAGE_KEY, SSConstants.SS_SETTINGS_FALLBACK_LANGUAGE);
+    }
+
+    public static SSCore getInstance(Context ctx) {
+        if (ssInstance == null) {
+            ssInstance = new SSCore(ctx.getApplicationContext());
+        }
+        return ssInstance;
     }
 
     public void ssSaveHighlights(int ssDaySerial, String highlights){
@@ -84,13 +98,13 @@ public class SSCore extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<SSDay> ssGetDaysByLessonSerial(int ssLessonSerial){
+    public ArrayList<SSDay> ssGetDaysByLessonSerial(int ssLessonSerial){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT ss_days.* " +
                 "FROM ss_days WHERE day_lesson_serial = ? " +
                 "ORDER BY serial ASC", new String[] { String.valueOf(ssLessonSerial) });
 
-        List<SSDay> ret = new ArrayList<SSDay>();
+        ArrayList<SSDay> ret = new ArrayList<SSDay>();
         if (c.moveToFirst()) {
             do {
                 ret.add(new SSDay(c.getInt(0), c.getString(2), c.getString(3), c.getString(7)));
@@ -99,7 +113,7 @@ public class SSCore extends SQLiteOpenHelper {
         return ret;
     }
 
-    public List<SSLesson> ssGetLessons(){
+    public ArrayList<SSLesson> ssGetLessons(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT ss_quarters.serial " +
                 "FROM ss_quarters, ss_lessons, ss_days " +
@@ -114,7 +128,7 @@ public class SSCore extends SQLiteOpenHelper {
                 "FROM ss_lessons " +
                 "WHERE ss_lessons.lesson_quarter_serial = ?", new String[]{ String.valueOf(ssQuarterSerial) });
 
-        List<SSLesson> ret = new ArrayList<SSLesson>();
+        ArrayList<SSLesson> ret = new ArrayList<SSLesson>();
         if (c.moveToFirst()) {
             do {
                 ret.add(new SSLesson(c.getInt(0), c.getString(2), c.getString(4)));
@@ -217,11 +231,7 @@ public class SSCore extends SQLiteOpenHelper {
         }
     }
 
-    public boolean downloadIfNeeded(){
-        InputStream is;
-        String json;
-        JSONObject jObj = null;
-
+    public boolean quarterlyForLanguageExists(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT COUNT(1) FROM ss_days, ss_lessons, ss_quarters " +
                 "WHERE ss_days.day_date = ? AND ss_days.day_lesson_serial = ss_lessons.serial " +
@@ -232,7 +242,17 @@ public class SSCore extends SQLiteOpenHelper {
         int count = c.getInt(0);
         c.close();
 
-        if (count > 0) { return true; }
+        return count > 0;
+    }
+
+    public boolean downloadIfNeeded(){
+        InputStream is;
+        String json;
+        Cursor c;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        if (quarterlyForLanguageExists()) { return true; }
 
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
