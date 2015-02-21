@@ -52,11 +52,12 @@
         android:layout_width="@dimen/ss_menu_day_date_shape_size"
         android:textAllCaps="true"
         android:textColor="@color/ss_menu_day_date_month"
+        android:layout_marginTop="@dimen/ss_menu_day_date_month_margin_top"
         android:textSize="@dimen/ss_menu_day_date_month_font_size" />
 
     <TextView
         android:id="@+id/ss_menu_day_date"
-        android:layout_alignTop="@+id/ss_menu_day_date_number"
+        android:layout_alignTop="@+id/ss_menu_day_date_shape"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/ss_menu_day_date_margin_left"
         android:layout_marginStart="@dimen/ss_menu_day_date_margin_left"
@@ -67,7 +68,7 @@
 
     <TextView
         android:id="@+id/ss_menu_day_name"
-        android:layout_alignTop="@+id/ss_menu_day_date_month"
+        android:layout_below="@id/ss_menu_day_date"
         android:layout_alignLeft="@+id/ss_menu_day_date"
         android:layout_alignStart="@+id/ss_menu_day_date"
         android:layout_height="wrap_content"
