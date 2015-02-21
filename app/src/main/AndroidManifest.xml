@@ -29,26 +29,44 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ss_ic_launcher"
         android:label="@string/ss_app_name"
         android:name="com.cryart.sabbathschool.SSApplication"
         android:theme="@style/SSAppTheme">
 
         <activity
+
             android:label="@string/ss_app_name"
-            android:name=".ui.activity.SSLoadingActivity" />
+            android:name=".ui.activity.SSLoadingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:label="@string/ss_app_name"
             android:configChanges="orientation|screenSize"
             android:name=".ui.activity.SSMainActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:label="@string/ss_app_name"
+            android:configChanges="orientation|screenSize"
+            android:name=".ui.activity.SSBibleVerseActivity"
+            android:theme="@style/SSBibleVerseActivity"
+            android:windowSoftInputMode="adjustResize" />
 
-        </activity>
+        <activity
+            android:label="@string/ss_setings"
+            android:configChanges="orientation|screenSize"
+            android:name=".ui.activity.SSSettingsActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:label="@string/ss_about"
+            android:configChanges="orientation|screenSize"
+            android:name=".ui.activity.SSAboutActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>
