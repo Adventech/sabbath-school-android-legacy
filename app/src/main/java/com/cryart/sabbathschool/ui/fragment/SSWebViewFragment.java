@@ -89,11 +89,11 @@ public class SSWebViewFragment extends Fragment {
     }
 
     protected void setHighlights(String highlights){
-        _SSWebView.loadUrl("javascript:ss.setHighlight('"+highlights+"');");
+        _SSWebView.loadUrl(String.format("javascript:ss.setHighlight('%s');", highlights));
     }
 
     protected void setComments(String comments){
-        _SSWebView.loadUrl("javascript:ss.setComments('"+comments+"');");
+        _SSWebView.loadUrl(String.format("javascript:ss.setComments('%s');", comments));
     }
 
     @Override
