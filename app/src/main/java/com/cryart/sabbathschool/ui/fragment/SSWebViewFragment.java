@@ -82,7 +82,8 @@ public class SSWebViewFragment extends Fragment {
         _SSWebView.loadDataWithBaseURL(SSConstants.SS_WEBAPP_PATH_PREFIX,
                 SSHelper.readFileFromAssets(getActivity(), SSConstants.SS_WEBAPP_MAIN)
                     .replaceAll("\\{\\{platform\\}\\}", SSConstants.SS_WEBAPP_PLATFORM)
-                    .replaceAll("small.css", _SSPreferences.getString(SSConstants.SS_SETTINGS_TEXT_SIZE_KEY, SSConstants.SS_SETTINGS_TEXT_SIZE_DEFAULT_VALUE))
+                    .replaceAll(SSConstants.SS_SETTINGS_TEXT_SIZE_DEFAULT_VALUE, _SSPreferences.getString(SSConstants.SS_SETTINGS_TEXT_SIZE_KEY, SSConstants.SS_SETTINGS_TEXT_SIZE_DEFAULT_VALUE))
+                    .replaceAll(SSConstants.SS_SETTINGS_READING_MODE_DEFAULT_VALUE, _SSPreferences.getString(SSConstants.SS_SETTINGS_READING_MODE_KEY, SSConstants.SS_SETTINGS_READING_MODE_DEFAULT_VALUE))
                     .replaceAll("<div class=\"wrapper\">", "<div class=\"wrapper\" style=\"margin-top: " + (SSConstants.TOPBAR_PADDING - SSHelper.convertPixelsToDp(getActivity(), SSHelper.getStatusBarHeight(getActivity()))) + "px\">" + _SSDay._day_text),
                 "text/html", "utf-8", null);
     }

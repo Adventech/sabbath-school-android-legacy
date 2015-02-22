@@ -308,6 +308,12 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
                 this.setHeroView();
                 break;
             }
+
+            case SSConstants.SS_SETTINGS_TEXT_SIZE_KEY:
+            case SSConstants.SS_SETTINGS_READING_MODE_KEY: {
+                ((SSTabsAdapter)this._SSPager.getAdapter()).reloadTabs();
+                break;
+            }
         }
     }
 

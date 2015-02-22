@@ -27,10 +27,13 @@ public class SSConstants {
     public static final String SS_SETTINGS_LANGUAGE_KEY = "ss_settings_lesson_language";
 
     public static final String SS_SETTINGS_TEXT_SIZE_KEY = "ss_settings_text_size";
-    public static final String SS_SETTINGS_TEXT_SIZE_DEFAULT_VALUE = "small.css";
+    public static final String SS_SETTINGS_TEXT_SIZE_DEFAULT_VALUE = "medium.css";
 
     public static final String SS_SETTINGS_KEN_BURNS_EFFECT_KEY = "ss_settings_ken_burns_effect";
     public static final boolean SS_SETTINGS_KEN_BURNS_EFFECT_DEFAULT_VALUE = true;
+
+    public static final String SS_SETTINGS_READING_MODE_KEY = "ss_settings_reading_mode";
+    public static final String SS_SETTINGS_READING_MODE_DEFAULT_VALUE = "style_normal.css";
 
     public static final String SS_BIBLE_VERSE_ACTIVITY_ARGUMENT = "ss_day_bible_verses";
 
@@ -40,7 +43,6 @@ public class SSConstants {
     public static final String SS_WEBAPP_MAIN = "sabbath-school-js/app.html";
     public static final String SS_WEBAPP_BIBLE = "sabbath-school-js/bible.html";
     public static final String SS_DAY_DATE_ARG = "_SSDayDate";
-    public static final String SS_POSITION = "_SSPosition";
     public static final int TOPBAR_PADDING = 248;
 
     public static final String SS_WEBVIEW_CLIPBOARD_LABEL = "ss_clipboard_label";

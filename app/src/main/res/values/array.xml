@@ -51,4 +51,16 @@
         <item>es</item>
         <item>uk</item>
     </string-array>
+
+    <string-array name="ss_settings_reading_mode_entries">
+        <item>Regular</item>
+        <item>Night Mode</item>
+        <item>Sepia</item>
+    </string-array>
+
+    <string-array name="ss_settings_reading_mode_values">
+        <item>style_normal.css</item>
+        <item>style_dark.css</item>
+        <item>style_sepia.css</item>
+    </string-array>
 </resources>

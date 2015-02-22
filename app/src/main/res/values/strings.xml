@@ -60,6 +60,7 @@
     <string name="ss_settings_general">General</string>
     <string name="ss_settings_text_size">Text Size</string>
     <string name="ss_settings_lesson_language">Lesson Language</string>
+    <string name="ss_settings_reading_mode">Reading Mode</string>
 
     <string name="ss_about">About</string>
     <string name="ss_about_love_your_neighbor">ואהבת לרעך כמוך</string>
