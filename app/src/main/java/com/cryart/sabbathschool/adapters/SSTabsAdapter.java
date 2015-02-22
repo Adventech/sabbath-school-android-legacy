@@ -54,6 +54,12 @@ public class SSTabsAdapter extends FragmentPagerAdapter {
         }
     }
 
+    public void reloadTabs(){
+        for (int i = 0; i < registeredFragments.size(); i++) {
+            ((SSWebViewFragment)registeredFragments.get(i)).loadDay(_SSDays.get(i)._day_date);
+        }
+    }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return _SSTabTitles[position];
