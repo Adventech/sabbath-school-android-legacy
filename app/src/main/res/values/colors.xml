@@ -43,4 +43,6 @@
     <color name="ss_menu_misc_divider">#efefef</color>
 
     <color name="ss_bible_verse_activity_title">#ffffff</color>
+
+    <color name="ss_about_activity_title_text_color">#333333</color>
 </resources>

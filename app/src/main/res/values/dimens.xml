@@ -82,6 +82,10 @@
     <dimen name="ss_bible_verse_activity_close_button_padding">18dp</dimen>
     <dimen name="ss_bible_verse_activity_window_corner_radius">3dp</dimen>
 
+    <dimen name="ss_about_activity_title_text_size">18sp</dimen>
+    <dimen name="ss_about_activity_love_your_neighbor_text_size">12sp</dimen>
+    <dimen name="ss_about_activity_menu_margin_top">20dp</dimen>
+
     <dimen name="ss_about_menu_padding_top">10dp</dimen>
     <dimen name="ss_about_menu_padding_bottom">10dp</dimen>
     <dimen name="ss_about_menu_padding_left">20dp</dimen>
