@@ -33,8 +33,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,36 +43,30 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cryart.sabbathschool.R;
-import com.cryart.sabbathschool.adapters.SSTabsAdapter;
 import com.cryart.sabbathschool.model.SSDay;
 import com.cryart.sabbathschool.ui.activity.SSBibleVerseActivity;
 import com.cryart.sabbathschool.ui.activity.SSMainActivity;
-import com.cryart.sabbathschool.ui.widget.SSSlidingTabLayout;
 import com.cryart.sabbathschool.ui.widget.SSWebView;
 import com.cryart.sabbathschool.util.SSConstants;
 import com.cryart.sabbathschool.util.SSCore;
 import com.cryart.sabbathschool.util.SSHelper;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
-public class SSWebViewFragment extends Fragment implements SSWebView.OnScrollChangedCallback {
+public class SSWebViewFragment extends Fragment {
     private SharedPreferences _SSPreferences;
 
     private String _SSDayDate;
     private SSDay _SSDay;
     private SSCore _SSCore;
-    private int _SSPosition;
 
-    private SSWebView _SSWebView;
-    private Toolbar _SSToolbar;
-    private SSSlidingTabLayout _SSTabs;
     private KenBurnsView _SSHero;
-    private View _SSStatusBar;
     private ProgressBar _SSWebViewLoading;
 
-    public static SSWebViewFragment newInstance(int _SSPosition, String _SSDayDate) {
+    public SSWebView _SSWebView;
+
+    public static SSWebViewFragment newInstance(String _SSDayDate) {
         SSWebViewFragment f = new SSWebViewFragment();
         Bundle b = new Bundle();
-        b.putInt(SSConstants.SS_POSITION, _SSPosition);
         b.putString(SSConstants.SS_DAY_DATE_ARG, _SSDayDate);
         f.setArguments(b);
         return f;
@@ -106,7 +98,6 @@ public class SSWebViewFragment extends Fragment implements SSWebView.OnScrollCha
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _SSPosition = getArguments().getInt(SSConstants.SS_POSITION);
         _SSDayDate = getArguments().getString(SSConstants.SS_DAY_DATE_ARG);
         _SSCore = SSCore.getInstance(getActivity());
     }
@@ -136,10 +127,7 @@ public class SSWebViewFragment extends Fragment implements SSWebView.OnScrollCha
         _SSWebViewLoading = (ProgressBar) _view.findViewById(R.id.ss_webview_loading);
         _SSWebView.setBackgroundColor(Color.TRANSPARENT);
 
-        _SSToolbar = (Toolbar)getActivity().findViewById(R.id.ss_toolbar);
-        _SSTabs = (SSSlidingTabLayout) getActivity().findViewById(R.id.ss_tabs);
         _SSHero = (KenBurnsView) getActivity().findViewById(R.id.ss_hero);
-        _SSStatusBar = getActivity().findViewById(R.id.ss_status_bar);
 
         _SSWebView.addJavascriptInterface(new SSWebInterface(getActivity()), "SSBridge");
         _SSWebView.getSettings().setJavaScriptEnabled(true);
@@ -155,34 +143,9 @@ public class SSWebViewFragment extends Fragment implements SSWebView.OnScrollCha
 
         this.loadDay(_SSDayDate);
 
-        _SSWebView.setOnScrollChangedCallback(this);
+        _SSWebView.setOnScrollChangedCallback((SSMainActivity)getActivity());
 
         return _view;
-    }
-
-    @Override
-    public void onScrollChanged(int deltaX, int deltaY) {
-        int scrollY = _SSWebView.getScrollY() * -1;
-        _SSHero.setTranslationY(scrollY * 0.5f);
-
-        int headerHeight = _SSHero.getHeight() - _SSToolbar.getHeight() - _SSStatusBar.getHeight();
-        float ratio = (float) Math.min(Math.max(scrollY * -1, 0), headerHeight) / headerHeight;
-
-        ((SSMainActivity)getActivity()).setToolbarStatusBarAlpha((int) (ratio * 255));
-
-        int scrollOtherFragments = scrollY * -1;
-        if (_SSTabs.getTop() + scrollY < _SSToolbar.getHeight() + _SSStatusBar.getHeight()) {
-            _SSTabs.setY(_SSToolbar.getHeight() + _SSStatusBar.getHeight());
-            scrollOtherFragments = _SSTabs.getBottom() - (_SSToolbar.getHeight() + _SSStatusBar.getHeight() + _SSTabs.getHeight());
-        } else {
-            _SSTabs.setTranslationY(scrollY);
-        }
-
-        SparseArray<Fragment> registeredFragments = ((SSTabsAdapter) ((SSMainActivity) getActivity()).getPager().getAdapter()).registeredFragments;
-        for (int i = 0; i < registeredFragments.size(); i++) {
-            if (i == _SSPosition) continue;
-            ((SSWebViewFragment) (registeredFragments.get(i)))._SSWebView.scrollTo(0, scrollOtherFragments);
-        }
     }
 
     private class SSWebInterface {

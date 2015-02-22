@@ -66,7 +66,7 @@ public class SSTabsAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return SSWebViewFragment.newInstance(position, _SSDays.get(position)._day_date);
+        return SSWebViewFragment.newInstance(_SSDays.get(position)._day_date);
     }
 
     @Override

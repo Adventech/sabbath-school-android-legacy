@@ -60,7 +60,7 @@ public class SSWebView extends WebView {
     protected void onScrollChanged(final int l, final int t, final int oldl, final int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         if (_SSOnScrollChangedCallback != null && _SSOnScrollChangedCallbackEnabled){
-            _SSOnScrollChangedCallback.onScrollChanged(l - oldl, t - oldt);
+            _SSOnScrollChangedCallback.onScrollChanged(l - oldl, t - oldt, getScrollY() * -1);
         }
     }
 
@@ -69,7 +69,7 @@ public class SSWebView extends WebView {
     }
 
     public static interface OnScrollChangedCallback {
-        public void onScrollChanged(int deltaX, int deltaY);
+        public void onScrollChanged(int deltaX, int deltaY, int scrollY);
     }
 
     @Override

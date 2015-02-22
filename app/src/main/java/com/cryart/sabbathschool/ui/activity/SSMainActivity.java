@@ -28,11 +28,13 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +48,9 @@ import com.cryart.sabbathschool.adapters.SSTabsAdapter;
 import com.cryart.sabbathschool.model.SSDay;
 import com.cryart.sabbathschool.model.SSLesson;
 import com.cryart.sabbathschool.model.SSMenuMiscItem;
+import com.cryart.sabbathschool.ui.fragment.SSWebViewFragment;
 import com.cryart.sabbathschool.ui.widget.SSSlidingTabLayout;
+import com.cryart.sabbathschool.ui.widget.SSWebView;
 import com.cryart.sabbathschool.util.SSConstants;
 import com.cryart.sabbathschool.util.SSCore;
 import com.cryart.sabbathschool.util.SSHelper;
@@ -56,7 +60,7 @@ import com.flaviofaria.kenburnsview.KenBurnsView;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class SSMainActivity extends ActionBarActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class SSMainActivity extends ActionBarActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback {
     private int SS_TOOLBAR_STATUS_BAR_ALPHA = 0;
 
     private SharedPreferences _SSPreferences;
@@ -304,6 +308,32 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
                 this.setHeroView();
                 break;
             }
+        }
+    }
+
+    @Override
+    public void onScrollChanged(int deltaX, int deltaY, int scrollY) {
+        _SSHero.setTranslationY(scrollY * 0.5f);
+
+        int headerHeight = _SSHero.getHeight() - _SSToolbar.getHeight() - _SSStatusBar.getHeight();
+        float ratio = (float) Math.min(Math.max(scrollY * -1, 0), headerHeight) / headerHeight;
+
+        setToolbarStatusBarAlpha((int) (ratio * 255));
+
+        int scrollOtherFragments = scrollY * -1;
+        if (_SSTabs.getTop() + scrollY < _SSToolbar.getHeight() + _SSStatusBar.getHeight()) {
+            _SSTabs.setY(_SSToolbar.getHeight() + _SSStatusBar.getHeight());
+            scrollOtherFragments = _SSTabs.getBottom() - (_SSToolbar.getHeight() + _SSStatusBar.getHeight() + _SSTabs.getHeight());
+        } else {
+            _SSTabs.setTranslationY(scrollY);
+        }
+
+        SparseArray<Fragment> registeredFragments = ((SSTabsAdapter) _SSPager.getAdapter()).registeredFragments;
+        for (int i = 0; i < registeredFragments.size(); i++) {
+            if (i == _SSPager.getCurrentItem()) continue;
+            ((SSWebViewFragment) (registeredFragments.get(i)))._SSWebView._SSOnScrollChangedCallbackEnabled = false;
+            ((SSWebViewFragment) (registeredFragments.get(i)))._SSWebView.scrollTo(0, scrollOtherFragments);
+            ((SSWebViewFragment) (registeredFragments.get(i)))._SSWebView._SSOnScrollChangedCallbackEnabled = true;
         }
     }
 }
