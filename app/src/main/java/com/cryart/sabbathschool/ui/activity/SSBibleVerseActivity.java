@@ -31,14 +31,14 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.cryart.sabbathschool.R;
 import com.cryart.sabbathschool.util.SSConstants;
 import com.cryart.sabbathschool.util.SSHelper;
 
 public class SSBibleVerseActivity extends Activity {
-    private ProgressBar _SSLoading;
+    private RelativeLayout _SSLoadingHolder;
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
@@ -46,8 +46,8 @@ public class SSBibleVerseActivity extends Activity {
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         ImageButton _SSCloseButton = (ImageButton) findViewById(R.id.ss_bible_verse_activity_close);
-        _SSLoading = (ProgressBar) findViewById(R.id.ss_bible_verse_activity_loading);
-        _SSLoading.setVisibility(View.VISIBLE);
+        _SSLoadingHolder = (RelativeLayout) findViewById(R.id.ss_bible_verse_activity_loading_holder);
+        _SSLoadingHolder.setVisibility(View.VISIBLE);
 
         _SSCloseButton.setOnClickListener(this.onCloseClick(this));
 
@@ -68,7 +68,7 @@ public class SSBibleVerseActivity extends Activity {
 
         _SSBibleVerseContent.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {
-                _SSLoading.setVisibility(View.INVISIBLE);
+                _SSLoadingHolder.setVisibility(View.INVISIBLE);
                 view.setVisibility(View.VISIBLE);
             }
         });
