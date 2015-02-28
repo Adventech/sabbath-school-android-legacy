@@ -94,4 +94,9 @@
     <dimen name="ss_about_menu_title_margin_left">10dp</dimen>
     <dimen name="ss_about_menu_title_text_size">14sp</dimen>
 
+    <dimen name="ss_open_source_notice_activity_padding_top">50dp</dimen>
+    <dimen name="ss_open_source_notice_activity_padding_left">20dp</dimen>
+    <dimen name="ss_open_source_notice_activity_padding_right">20dp</dimen>
+    <dimen name="ss_open_source_notice_activity_padding_bottom">50dp</dimen>
+
 </resources>

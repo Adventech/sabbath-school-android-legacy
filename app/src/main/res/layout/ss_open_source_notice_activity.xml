@@ -21,13 +21,21 @@
   ~ THE SOFTWARE.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:padding="20dp"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/ss_open_source_notice_activity_padding_top"
+    android:paddingBottom="@dimen/ss_open_source_notice_activity_padding_bottom"
+    android:paddingLeft="@dimen/ss_open_source_notice_activity_padding_left"
+    android:paddingStart="@dimen/ss_open_source_notice_activity_padding_left"
+    android:paddingRight="@dimen/ss_open_source_notice_activity_padding_right"
+    android:paddingEnd="@dimen/ss_open_source_notice_activity_padding_right"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <WebView
         android:id="@+id/ss_open_source_notice_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>
