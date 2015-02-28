@@ -25,6 +25,9 @@ package com.cryart.sabbathschool;
 import android.app.Application;
 import android.content.Context;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 public class SSApplication extends Application {
     private static SSApplication instance = new SSApplication();
 
@@ -39,6 +42,13 @@ public class SSApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        getTracker();
+    }
+
+    public synchronized Tracker getTracker() {
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+        analytics.enableAutoActivityReports(this);
+        return analytics.newTracker(R.xml.ss_ga);
     }
 }
 

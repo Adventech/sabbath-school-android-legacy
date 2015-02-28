@@ -47,4 +47,5 @@ dependencies {
     compile 'com.android.support:support-v13:21.+'
     compile 'com.android.support:appcompat-v7:21.+'
     compile 'com.flaviofaria:kenburnsview:1.0.5'
+    compile 'com.google.android.gms:play-services-base:6.5.+'
 }
