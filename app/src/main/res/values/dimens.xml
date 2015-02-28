@@ -92,6 +92,6 @@
     <dimen name="ss_about_menu_padding_right">10dp</dimen>
     <dimen name="ss_about_menu_icon_size">16sp</dimen>
     <dimen name="ss_about_menu_title_margin_left">10dp</dimen>
-    <dimen name="ss_about_menu_title_text_size">12sp</dimen>
+    <dimen name="ss_about_menu_title_text_size">14sp</dimen>
 
 </resources>

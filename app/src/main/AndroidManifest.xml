@@ -68,6 +68,7 @@
             android:label="@string/ss_about"
             android:configChanges="orientation|screenSize"
             android:name=".ui.activity.SSAboutActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
