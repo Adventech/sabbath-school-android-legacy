@@ -69,5 +69,17 @@
             android:configChanges="orientation|screenSize"
             android:name=".ui.activity.SSAboutActivity"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.activity.SSOpenSourceNoticeActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/SSOpenSourceNoticeActivity" >
+
+            <intent-filter>
+                <action android:name="com.postbeyond.postbeyond.ui.activity.SSSettingsActivity.SSOpenSourceNoticeActivity"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

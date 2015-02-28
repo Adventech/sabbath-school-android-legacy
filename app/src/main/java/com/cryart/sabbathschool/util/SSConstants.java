@@ -56,4 +56,6 @@ public class SSConstants {
     public static final String SS_ABOUT_PHOTO_CREDITS_URL = "http://instagram.com/asimsness";
     public static final long SS_ABOUT_TWITTER_ID = 116854782L;
     public static final String SS_ABOUT_TWITTER_FALLBACK_URL = "https://twitter.com/vitalik_l";
+
+    public static final String SS_OPEN_SOURCE_NOTICE_CONTENT_PATH = "file:///android_asset/ss_open_source_notice.html";
 }

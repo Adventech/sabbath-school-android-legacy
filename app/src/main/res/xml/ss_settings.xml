@@ -52,4 +52,25 @@
             android:entries="@array/ss_settings_reading_mode_entries"
             android:entryValues="@array/ss_settings_reading_mode_values" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/ss_settings_about">
+        <Preference
+            android:title="@string/ss_settings_open_source_title"
+            android:summary="@string/ss_settings_open_source_summary"
+            android:persistent="false"
+            android:selectable="true">
+            <intent
+                android:action="com.postbeyond.postbeyond.ui.activity.SSSettingsActivity.SSOpenSourceNoticeActivity" />
+        </Preference>
+
+        <Preference
+            android:title="@string/ss_settings_website"
+            android:summary="@string/ss_settings_website_intent"
+            android:persistent="false"
+            android:selectable="true">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/ss_settings_website_intent" />
+        </Preference>
+    </PreferenceCategory>
 </PreferenceScreen>
