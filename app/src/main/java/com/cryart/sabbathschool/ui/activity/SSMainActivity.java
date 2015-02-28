@@ -236,8 +236,13 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         return super.onOptionsItemSelected(item);
     }
 
-    public ViewPager getPager(){
-        return _SSPager;
+    private void closeSSMenu(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                _SSDrawerLayout.closeDrawers();
+            }
+        }, 150);
     }
 
     @Override
@@ -271,7 +276,7 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
                 setTab((SSDay)selected);
             }
 
-            _SSDrawerLayout.closeDrawers();
+            this.closeSSMenu();
             return true;
         } else if (selected instanceof SSMenuMiscItem){
             if (selected == SSMenuMisc.SS_MENU_MISC_ITEM_SETTINGS){
@@ -283,7 +288,9 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
                 Intent intent = new Intent(SSMainActivity.this, SSAboutActivity.class);
                 SSMainActivity.this.startActivity(intent);
             }
-            _SSDrawerLayout.closeDrawers();
+
+            this.closeSSMenu();
+
             return true;
         }
         return false;
