@@ -50,6 +50,7 @@ import com.cryart.sabbathschool.ui.widget.SSWebView;
 import com.cryart.sabbathschool.util.SSConstants;
 import com.cryart.sabbathschool.util.SSCore;
 import com.cryart.sabbathschool.util.SSHelper;
+import com.cryart.sabbathschool.util.SSTracker;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
 public class SSWebViewFragment extends Fragment {
@@ -161,13 +162,15 @@ public class SSWebViewFragment extends Fragment {
                 Intent _SSBibleActivityIntent = new Intent(getActivity().getApplicationContext(), SSBibleVerseActivity.class);
                 _SSBibleActivityIntent.putExtra(SSConstants.SS_BIBLE_VERSE_ACTIVITY_ARGUMENT, _SSDay._day_verses_parsed.getString(verse));
                 startActivity(_SSBibleActivityIntent);
+
+                SSTracker.sendOpenBibleEvent(getActivity());
             } catch (Exception e){}
         }
 
         @JavascriptInterface
         public void saveHighlights(String highlights){
             try {
-                // TODO: tracking
+                SSTracker.sendSelectionHighlightEvent(getActivity());
                 _SSCore.ssSaveHighlights(_SSDay._serial, highlights);
             } catch (Exception e){}
         }
@@ -175,7 +178,7 @@ public class SSWebViewFragment extends Fragment {
         @JavascriptInterface
         public void saveComments(String comments){
             try {
-                // TODO: tracking
+                SSTracker.sendCommentSaveEvent(getActivity());
                 _SSCore.ssSaveComments(_SSDay._serial, comments);
             } catch (Exception e){}
         }
@@ -183,7 +186,7 @@ public class SSWebViewFragment extends Fragment {
         @JavascriptInterface
         public void copy(String selection){
             try {
-                // TODO: tracking
+                SSTracker.sendSelectionCopyEvent(getActivity());
                 ClipboardManager _clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText(SSConstants.SS_WEBVIEW_CLIPBOARD_LABEL, selection);
                 _clipboard.setPrimaryClip(clip);
@@ -194,7 +197,7 @@ public class SSWebViewFragment extends Fragment {
         @JavascriptInterface
         public void search(String selection){
             try {
-                // TODO: tracking
+                SSTracker.sendSelectionSearchEvent(getActivity());
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(SSConstants.SS_WEBVIEW_SEARCH_PROVIDER, selection)));
                 startActivity(intent);
             } catch (Exception e){}
@@ -203,7 +206,7 @@ public class SSWebViewFragment extends Fragment {
         @JavascriptInterface
         public void share(String selection){
             try {
-                // TODO: tracking
+                SSTracker.sendSelectionShareEvent(getActivity());
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, selection);
