@@ -87,6 +87,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-v13-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="kenburnsview-1.0.5" level="project" />
+    <orderEntry type="library" exported="" name="android-rate-0.4.3" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />

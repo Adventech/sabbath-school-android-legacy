@@ -58,4 +58,6 @@ public class SSConstants {
     public static final String SS_ABOUT_TWITTER_FALLBACK_URL = "https://twitter.com/vitalik_l";
 
     public static final String SS_OPEN_SOURCE_NOTICE_CONTENT_PATH = "file:///android_asset/ss_open_source_notice.html";
+
+    public static final Integer SS_APP_RATE_INSTALL_DAYS = 7;
 }
