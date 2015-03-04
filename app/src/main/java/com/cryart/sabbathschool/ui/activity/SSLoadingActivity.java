@@ -50,10 +50,13 @@ public class SSLoadingActivity extends Activity {
 
         if (ssPreferences.getString(SSConstants.SS_SETTINGS_LANGUAGE_KEY, null) == null){
             String _SSLanguage = Locale.getDefault().getLanguage();
-            if (Arrays.asList(_SSSupportedLanguages).contains(_SSLanguage)) {
+
+            if (!Arrays.asList(_SSSupportedLanguages).contains(_SSLanguage)) {
                 _SSLanguage = SSConstants.SS_SETTINGS_FALLBACK_LANGUAGE;
             }
             ssPreferences.edit().putString(SSConstants.SS_SETTINGS_LANGUAGE_KEY, _SSLanguage).commit();
+            SSCore.getInstance(this);
+            SSCore.refreshLanguage();
         }
 
         PreferenceManager.setDefaultValues(this, R.xml.ss_settings, false);
