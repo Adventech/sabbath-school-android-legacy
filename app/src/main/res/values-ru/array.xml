@@ -23,42 +23,22 @@
 
 <resources>
     <string-array name="ss_settings_text_size_entries">
-        <item>Small</item>
-        <item>Medium</item>
-        <item>Large</item>
-        <item>Extra Large</item>
-    </string-array>
-
-    <string-array name="ss_settings_text_size_values">
-        <item>small.css</item>
-        <item>medium.css</item>
-        <item>large.css</item>
-        <item>x-large.css</item>
+        <item>Маленький</item>
+        <item>Средний</item>
+        <item>Большой</item>
+        <item>Очень Большой</item>
     </string-array>
 
     <string-array name="ss_settings_lesson_language_entries">
-        <item>English</item>
-        <item>Russian</item>
-        <item>Spanish</item>
-        <item>Ukrainian</item>
-    </string-array>
-
-    <string-array name="ss_settings_lesson_language_values">
-        <item>en</item>
-        <item>ru</item>
-        <item>es</item>
-        <item>uk</item>
+        <item>Английский</item>
+        <item>Русский</item>
+        <item>Испанский</item>
+        <item>Украинский</item>
     </string-array>
 
     <string-array name="ss_settings_reading_mode_entries">
-        <item>Regular</item>
-        <item>Night Mode</item>
-        <item>Sepia</item>
-    </string-array>
-
-    <string-array name="ss_settings_reading_mode_values">
-        <item>style_normal.css</item>
-        <item>style_dark.css</item>
-        <item>style_sepia.css</item>
+        <item>Обычный</item>
+        <item>Ночной Режим</item>
+        <item>Сепия</item>
     </string-array>
 </resources>

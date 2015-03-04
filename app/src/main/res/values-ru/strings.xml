@@ -1,0 +1,84 @@
+<!--
+  ~ Copyright (c) 2014 Vitaliy Lim <lim.vitaliy@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<resources>
+    <string name="ss_app_name">Субботняя Школа</string>
+    <string name="ss_navigation_menu_open">Открыть меню</string>
+    <string name="ss_navigation_menu_close">Закрыть меню</string>
+
+    <string name="ss_menu_lesson">Урок</string>
+
+    <string-array name="ss_tabs">
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+    </string-array>
+
+    <string name="ss_menu_header_indicator_more">&#xe08c;</string>
+    <string name="ss_menu_header_indicator_less">&#xe08b;</string>
+
+    <string name="ss_menu_misc_settings_icon">&#xe145;</string>
+    <string name="ss_menu_misc_settings_title">Настройки</string>
+
+    <string name="ss_menu_misc_about_icon">&#xe0bf;</string>
+    <string name="ss_menu_misc_about_title">О Программе</string>
+
+    <string name="ss_webview_menu_highlight">Выделить</string>
+    <string name="ss_webview_menu_search">Поиск</string>
+    <string name="ss_webview_menu_copy">Копировать</string>
+    <string name="ss_webview_menu_copied">Скопировано</string>
+    <string name="ss_webview_menu_share">Поделиться</string>
+    <string name="ss_webview_menu_share_text_to">Поделиться Через:</string>
+    <string name="ss_webview_menu_remove_highlight">Убрать Выделение</string>
+
+    <string name="ss_bible_verse_activity_title">Библейский Стих</string>
+
+    <string name="ss_setings">Настройки</string>
+    <string name="ss_settings_general">Основные</string>
+    <string name="ss_settings_text_size">Размер Текста</string>
+    <string name="ss_settings_ken_burns">Эффект Кена Бернса</string>
+    <string name="ss_settings_ken_burns_summary">Эффект панорамирования и масштабирования главного изображения</string>
+    <string name="ss_settings_lesson_language">Язык Урочника</string>
+    <string name="ss_settings_reading_mode">Режим Чтения</string>
+    <string name="ss_settings_about">О Программе</string>
+    <string name="ss_settings_open_source_title">Открытое ПО</string>
+    <string name="ss_settings_open_source_summary">Лицензии на Открытое Программное Обеспечение</string>
+    <string name="ss_settings_website">Вебсайт</string>
+    <string name="ss_settings_website_intent">http://vitalikl.github.io/ss</string>
+
+    <string name="ss_settings_version">Версия</string>
+
+    <string name="ss_about">О Программе</string>
+    <string name="ss_about_love_your_neighbor">ואהבת לרעך כמוך</string>
+    <string name="ss_about_menu_instagram_icon">&#xf16d;</string>
+    <string name="ss_about_menu_instagram_title">\@v1talique</string>
+
+    <string name="ss_about_menu_twitter_icon">&#xf099;</string>
+    <string name="ss_about_menu_twitter_title">\@vitalik_l</string>
+
+    <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
+    <string name="ss_about_menu_photo_credits_title">За Фото Спасибо \@asimsness</string>
+</resources>

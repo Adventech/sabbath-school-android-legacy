@@ -59,6 +59,8 @@
     <string name="ss_setings">Settings</string>
     <string name="ss_settings_general">General</string>
     <string name="ss_settings_text_size">Text Size</string>
+    <string name="ss_settings_ken_burns">Ken Burns Effect</string>
+    <string name="ss_settings_ken_burns_summary">Floating featured image on the main screen</string>
     <string name="ss_settings_lesson_language">Lesson Language</string>
     <string name="ss_settings_reading_mode">Reading Mode</string>
     <string name="ss_settings_about">About</string>
@@ -78,5 +80,5 @@
     <string name="ss_about_menu_twitter_title">\@vitalik_l</string>
 
     <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
-    <string name="ss_about_menu_photo_credits_title">Photo credits \@asimsness</string>
+    <string name="ss_about_menu_photo_credits_title">Photo Credits \@asimsness</string>
 </resources>
