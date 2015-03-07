@@ -28,9 +28,6 @@ public class SSLesson extends Object {
     public String _lesson_date_text;
     public String _lesson_image;
 
-    public SSLesson() {
-
-    }
 
     public SSLesson(int serial,
                     String lesson_name,
