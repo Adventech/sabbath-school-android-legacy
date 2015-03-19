@@ -21,15 +21,74 @@
   ~ THE SOFTWARE.
   -->
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@drawable/ss_loading_splash"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/ss_splash_logo"
+        android:background="@drawable/ss_app_icon_white"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/ss_loading_controls"
+        android:layout_below="@+id/ss_splash_logo"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <ProgressBar
+            android:id="@+id/ss_loading_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/ss_loading_spinner_top_margin"
+            style="?android:attr/progressBarStyleSmall" />
+
+        <Button
+            android:id="@+id/ss_loading_retry"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="@dimen/ss_loading_retry_bottom_padding"
+            android:paddingEnd="@dimen/ss_loading_retry_right_padding"
+            android:paddingLeft="@dimen/ss_loading_retry_left_padding"
+            android:paddingRight="@dimen/ss_loading_retry_right_padding"
+            android:paddingTop="@dimen/ss_loading_retry_top_padding"
+            android:text="@string/ss_retry"
+            android:textAllCaps="true"
+            android:textColor="@color/ss_loading_retry_text_color"
+            android:textSize="@dimen/ss_loading_retry_text_size"
+            android:visibility="invisible"
+            style="?android:attr/borderlessButtonStyle" />
+    </RelativeLayout>
+
     <TextView
+        android:id="@+id/ss_loading_explainer"
+        android:layout_below="@id/ss_loading_controls"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/ss_loading_explainer_top_margin"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="LOADING!" />
+        android:textColor="@color/ss_loading_explainer_text_color"
+        android:textSize="@dimen/ss_loading_explainer_text_size"
+        android:text="@string/ss_loading" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/ss_app_title"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/ss_loading_app_title_bottom_margin"
+        android:layout_width="wrap_content"
+        android:text="@string/ss_app_name"
+        android:textAllCaps="true"
+        android:textColor="@color/ss_loading_app_title_text_color"
+        android:textSize="@dimen/ss_loading_app_title_text_size" />
+</RelativeLayout>

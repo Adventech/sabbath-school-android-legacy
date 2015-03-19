@@ -22,6 +22,14 @@
 
 <resources>
     <string name="ss_app_name">Sabbath School</string>
+    <string name="ss_loading">Loading</string>
+    <string name="ss_downloading">Downloading latest quarterly</string>
+    <string name="ss_downloading_error">Error downloading</string>
+    <string name="ss_retry">Retry</string>
+
+    <string name="ss_notification_read_lesson">Read Lesson</string>
+    <string name="ss_notification_share_lesson">Share Lesson</string>
+
     <string name="ss_navigation_menu_open">Open Menu</string>
     <string name="ss_navigation_menu_close">Close Menu</string>
 

@@ -22,6 +22,14 @@
 
 <resources>
     <string name="ss_app_name">Субботняя Школа</string>
+    <string name="ss_loading">Загрузка</string>
+    <string name="ss_downloading">Загружаю последний урочник</string>
+    <string name="ss_downloading_error">Ошибка при загрузке</string>
+    <string name="ss_retry">Попробовать снова</string>
+
+    <string name="ss_notification_read_lesson">Читать Урок</string>
+    <string name="ss_notification_share_lesson">Поделиться</string>
+
     <string name="ss_navigation_menu_open">Открыть меню</string>
     <string name="ss_navigation_menu_close">Закрыть меню</string>
 
