@@ -212,6 +212,11 @@ public class SSCore extends SQLiteOpenHelper {
         );
     }
 
+    public static boolean databaseExists() {
+        File dbFile = context.getDatabasePath(DATABASE_NAME);
+        return dbFile.exists();
+    }
+
     public void copyDataBaseIfNeeded() throws IOException {
         File dbFile = context.getDatabasePath(DATABASE_NAME);
         if (!dbFile.exists()){
@@ -246,13 +251,13 @@ public class SSCore extends SQLiteOpenHelper {
     }
 
     public boolean downloadIfNeeded(){
+        if (quarterlyForLanguageExists()) { return true; }
+
         InputStream is;
         String json;
         Cursor c;
 
         SQLiteDatabase db = this.getReadableDatabase();
-
-        if (quarterlyForLanguageExists()) { return true; }
 
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
