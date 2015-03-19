@@ -35,6 +35,12 @@ public class SSConstants {
     public static final String SS_SETTINGS_READING_MODE_KEY = "ss_settings_reading_mode";
     public static final String SS_SETTINGS_READING_MODE_DEFAULT_VALUE = "style_normal.css";
 
+    public static final String SS_SETTINGS_NOTIFICATION_ENABLED_KEY = "ss_settings_notification_enabled";
+    public static final boolean SS_SETTINGS_NOTIFICATION_ENABLED_DEFAULT_VALUE = true;
+
+    public static final String SS_SETTINGS_NOTIFICATION_TIME_KEY = "ss_settings_notification_time";
+    public static final String SS_SETTINGS_NOTIFICATION_TIME_DEFAULT_VALUE = "08:00";
+
     public static final String SS_BIBLE_VERSE_ACTIVITY_ARGUMENT = "ss_day_bible_verses";
 
     public static final int SS_PAGER_OFFSCREEN_PAGE_LIMIT = 7;
@@ -60,4 +66,7 @@ public class SSConstants {
     public static final String SS_OPEN_SOURCE_NOTICE_CONTENT_PATH = "file:///android_asset/ss_open_source_notice.html";
 
     public static final Integer SS_APP_RATE_INSTALL_DAYS = 7;
+    public static final String SS_NOTIFICATION_TIME_SETTINGS_FORMAT = "hh:mm";
+
+    public static final String SS_NOTIFICATION_LESSON_HERO_TMP_FILENAME = "share_lesson.png";
 }
