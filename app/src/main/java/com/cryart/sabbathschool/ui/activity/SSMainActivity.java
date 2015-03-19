@@ -25,6 +25,7 @@ package com.cryart.sabbathschool.ui.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -41,6 +42,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.cryart.sabbathschool.R;
 import com.cryart.sabbathschool.adapters.SSMenuAdapter;
@@ -55,6 +57,7 @@ import com.cryart.sabbathschool.util.SSConstants;
 import com.cryart.sabbathschool.util.SSCore;
 import com.cryart.sabbathschool.util.SSHelper;
 import com.cryart.sabbathschool.util.SSMenuMisc;
+import com.cryart.sabbathschool.util.SSNotification;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 
 import java.util.ArrayList;
@@ -72,6 +75,7 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
     private DrawerLayout _SSDrawerLayout;
     private SSSlidingTabLayout _SSTabs;
     private Toolbar _SSToolbar;
+    private TextView _SSToolbarTitle;
     private ViewPager _SSPager;
     private View _SSStatusBar;
     private ExpandableListView _SSMenu;
@@ -139,9 +143,12 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
     }
 
     public void setToolbarStatusBarAlpha(int alpha){
+        int color = _SSToolbarTitle.getCurrentTextColor();
+
         SS_TOOLBAR_STATUS_BAR_ALPHA = alpha;
         _SSToolbar.getBackground().setAlpha(alpha);
         _SSStatusBar.getBackground().setAlpha(alpha);
+        _SSToolbarTitle.setTextColor(Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color)));
     }
 
     @Override
@@ -170,6 +177,13 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         setupWidgets();
 
         setSupportActionBar(_SSToolbar);
+
+        for (int i = 0; i < _SSToolbar.getChildCount(); i++){
+            if (_SSToolbar.getChildAt(i) instanceof TextView){
+                _SSToolbarTitle = (TextView) _SSToolbar.getChildAt(i);
+                break;
+            }
+        }
 
         _SSActionBarToggle.setDrawerIndicatorEnabled(true);
 
@@ -324,6 +338,17 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
             case SSConstants.SS_SETTINGS_TEXT_SIZE_KEY:
             case SSConstants.SS_SETTINGS_READING_MODE_KEY: {
                 ((SSTabsAdapter)this._SSPager.getAdapter()).reloadTabs();
+                break;
+            }
+
+            case SSConstants.SS_SETTINGS_NOTIFICATION_ENABLED_KEY:
+            case SSConstants.SS_SETTINGS_NOTIFICATION_TIME_KEY: {
+                SSNotification.cancelRepeatingNotification(getApplicationContext());
+
+                if (_SSPreferences.getBoolean(SSConstants.SS_SETTINGS_NOTIFICATION_ENABLED_KEY, SSConstants.SS_SETTINGS_NOTIFICATION_ENABLED_DEFAULT_VALUE)){
+                    SSNotification.setRepeatingNotification(getApplicationContext());
+                }
+
                 break;
             }
         }

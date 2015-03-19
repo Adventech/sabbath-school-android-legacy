@@ -71,6 +71,10 @@
     <string name="ss_settings_ken_burns_summary">Floating featured image on the main screen</string>
     <string name="ss_settings_lesson_language">Lesson Language</string>
     <string name="ss_settings_reading_mode">Reading Mode</string>
+    <string name="ss_settings_notification_enabled">Daily Notification</string>
+    <string name="ss_settings_notification_enabled_summary">Check to enable daily notification about sabbath school lesson</string>
+    <string name="ss_settings_notification_time">Notification Time</string>
+
     <string name="ss_settings_about">About</string>
     <string name="ss_settings_open_source_title">Open Source Licenses</string>
     <string name="ss_settings_open_source_summary">License details for open source software</string>

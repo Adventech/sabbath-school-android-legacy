@@ -33,6 +33,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class SSHelper {
     /**
@@ -107,5 +110,58 @@ public class SSHelper {
     public static int convertPixelsToDp(Context context, int px){
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    /**
+     * Parses time string and returns parsed hour of day
+     * @param time Time string
+     * @param parseFormat Format of the time string
+     * @return Hour of the day or 0 if error
+     */
+    public static int parseHourFromString(String time, String parseFormat){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(parseFormat);
+            Date date = sdf.parse(time);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(date.getTime());
+            return calendar.get(Calendar.HOUR_OF_DAY);
+        } catch (Exception exception){
+            return 0;
+        }
+    }
+
+    /**
+     * Parses time string and returns parsed minute of hour
+     * @param time Time string
+     * @param parseFormat Format of the time string
+     * @return Minute of the hour or 0 if error
+     */
+    public static int parseMinuteFromString(String time, String parseFormat){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(parseFormat);
+            Date date = sdf.parse(time);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(date.getTime());
+            return calendar.get(Calendar.MINUTE);
+        } catch (Exception exception){
+            return 0;
+        }
+    }
+
+    /**
+     * Parses time string and returns it formatted with <code>returnFormat</code>
+     * @param time Time string
+     * @param parseFormat Format of the time string
+     * @param returnFormat Desired format
+     * @return Reformatted string
+     */
+    public static String parseTimeAndReturnInFormat(String time, String parseFormat, java.text.DateFormat returnFormat){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(parseFormat);
+            Date date = sdf.parse(time);
+            return returnFormat.format(date);
+        } catch (Exception exception){
+            return time;
+        }
     }
 }

@@ -72,6 +72,9 @@
     <string name="ss_settings_lesson_language">Язык Урочника</string>
     <string name="ss_settings_reading_mode">Режим Чтения</string>
     <string name="ss_settings_about">О Программе</string>
+    <string name="ss_settings_notification_enabled">Ежедневные Оповещения</string>
+    <string name="ss_settings_notification_enabled_summary">Влючить ежедневные оповещения о текущем уроке Субботней Школы</string>
+    <string name="ss_settings_notification_time">Время Оповещения</string>
     <string name="ss_settings_open_source_title">Открытое ПО</string>
     <string name="ss_settings_open_source_summary">Лицензии на Открытое Программное Обеспечение</string>
     <string name="ss_settings_website">Вебсайт</string>

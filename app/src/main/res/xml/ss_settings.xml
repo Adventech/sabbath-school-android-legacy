@@ -51,6 +51,19 @@
             android:defaultValue="style_normal.css"
             android:entries="@array/ss_settings_reading_mode_entries"
             android:entryValues="@array/ss_settings_reading_mode_values" />
+
+        <CheckBoxPreference
+            android:key="ss_settings_notification_enabled"
+            android:title="@string/ss_settings_notification_enabled"
+            android:summary="@string/ss_settings_notification_enabled_summary"
+            android:defaultValue="true" />
+
+        <com.cryart.sabbathschool.util.SSTimePickerPreference
+            android:key="ss_settings_notification_time"
+            android:title="@string/ss_settings_notification_time"
+            android:dependency="ss_settings_notification_enabled"
+            android:defaultValue="08:00" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/ss_settings_about">
@@ -60,7 +73,7 @@
             android:persistent="false"
             android:selectable="true">
             <intent
-                android:action="com.postbeyond.postbeyond.ui.activity.SSSettingsActivity.SSOpenSourceNoticeActivity" />
+                android:action="com.cryart.sabbathschool.ui.activity.SSSettingsActivity.SSOpenSourceNoticeActivity" />
         </Preference>
 
         <Preference
