@@ -47,29 +47,29 @@ import java.util.Calendar;
 
 public class SSNotification {
     public static void setRepeatingNotification(Context context){
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, SSBroadcastReceiver.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        AlarmManager _SSAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent _SSNotificationIntent = new Intent(context, SSBroadcastReceiver.class);
+        PendingIntent _SSAlarmIntent = PendingIntent.getBroadcast(context, 0, _SSNotificationIntent, 0);
 
-        Calendar notificationTime = Calendar.getInstance();
+        Calendar _SSNotificationTime = Calendar.getInstance();
 
         SharedPreferences ssPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String ss_settings_notification_time = ssPreferences.getString(SSConstants.SS_SETTINGS_NOTIFICATION_TIME_KEY, SSConstants.SS_SETTINGS_NOTIFICATION_TIME_DEFAULT_VALUE);
 
-        notificationTime.set(Calendar.HOUR_OF_DAY, SSHelper.parseHourFromString(ss_settings_notification_time, SSConstants.SS_NOTIFICATION_TIME_SETTINGS_FORMAT));
-        notificationTime.set(Calendar.MINUTE, SSHelper.parseMinuteFromString(ss_settings_notification_time, SSConstants.SS_NOTIFICATION_TIME_SETTINGS_FORMAT));
-        notificationTime.set(Calendar.SECOND, 0);
+        _SSNotificationTime.set(Calendar.HOUR_OF_DAY, SSHelper.parseHourFromString(ss_settings_notification_time, SSConstants.SS_NOTIFICATION_TIME_SETTINGS_FORMAT));
+        _SSNotificationTime.set(Calendar.MINUTE, SSHelper.parseMinuteFromString(ss_settings_notification_time, SSConstants.SS_NOTIFICATION_TIME_SETTINGS_FORMAT));
+        _SSNotificationTime.set(Calendar.SECOND, 0);
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, notificationTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+        _SSAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, _SSNotificationTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, _SSAlarmIntent);
     }
 
     public static void cancelRepeatingNotification(Context context) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent updateServiceIntent = new Intent(context, SSBroadcastReceiver.class);
-        PendingIntent pendingUpdateIntent = PendingIntent.getBroadcast(context, 0, updateServiceIntent, 0);
+        AlarmManager _SSAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent _SSUpdateServiceIntent = new Intent(context, SSBroadcastReceiver.class);
+        PendingIntent _SSPendingUpdateServiceIntent = PendingIntent.getBroadcast(context, 0, _SSUpdateServiceIntent, 0);
 
         try {
-            alarmManager.cancel(pendingUpdateIntent);
+            _SSAlarmManager.cancel(_SSPendingUpdateServiceIntent);
         } catch (Exception e) {}
     }
 
