@@ -92,4 +92,10 @@
 
     <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
     <string name="ss_about_menu_photo_credits_title">За Фото Спасибо \@asimsness</string>
+
+    <string name="rate_dialog_title">Оцените Субботнюю Школу</string>
+    <string name="rate_dialog_message">Если вам нравится Субботняя Школа, не могли бы вы уделить минуту и оценить приложение? Спасибо!</string>
+    <string name="rate_dialog_ok">Да</string>
+    <string name="rate_dialog_cancel">Позже</string>
+    <string name="rate_dialog_no">Нет</string>
 </resources>
