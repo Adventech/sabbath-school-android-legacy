@@ -109,7 +109,7 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
         Object menuItemGroup = getGroup(groupPosition);
 
         if (getChildrenCount(groupPosition) > 0){
-            view = inflater.inflate(R.layout.ss_menu_header, null);
+            view = inflater.inflate(R.layout.ss_menu_header, viewGroup, false);
             TextView SSMenuLessonDate = (TextView) view.findViewById(R.id.ss_menu_lesson_date);
             TextView SSMenuLessonName = (TextView) view.findViewById(R.id.ss_menu_lesson_name);
             TextView SSMenuLessonIndicator = (TextView) view.findViewById(R.id.ss_menu_lesson_indicator);
@@ -120,7 +120,7 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
             SSMenuLessonIndicator.setText(isExpanded ? R.string.ss_menu_header_indicator_less : R.string.ss_menu_header_indicator_more);
 
         } else if (menuItemGroup instanceof SSDay){
-            view = inflater.inflate(R.layout.ss_menu_day, null);
+            view = inflater.inflate(R.layout.ss_menu_day, viewGroup, false);
             TextView SSMenuDayName = (TextView) view.findViewById(R.id.ss_menu_day_name);
             TextView SSMenuDayDate = (TextView) view.findViewById(R.id.ss_menu_day_date);
             TextView SSMenuDayDateNumber = (TextView) view.findViewById(R.id.ss_menu_day_date_number);
@@ -138,9 +138,9 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
             SSMenuDayName.setText(((SSDay)menuItemGroup)._day_name);
             SSMenuDayDate.setText(((SSDay)menuItemGroup)._day_date_text);
         } else if (menuItemGroup instanceof String) {
-            view = inflater.inflate(R.layout.ss_menu_divider, null);
+            view = inflater.inflate(R.layout.ss_menu_divider, viewGroup, false);
         } else {
-            view = inflater.inflate(R.layout.ss_menu_misc, null);
+            view = inflater.inflate(R.layout.ss_menu_misc, viewGroup, false);
             TextView _SSSubMenuIcon = (TextView) view.findViewById(R.id.ss_menu_misc_icon);
             TextView _SSSubMenuTitle = (TextView) view.findViewById(R.id.ss_menu_misc_title);
             _SSSubMenuIcon.setTypeface(Typeface.createFromAsset(context.getAssets(), SSConstants.SS_MATERIAL_ICON_FONT_PATH));
@@ -157,7 +157,7 @@ public class SSMenuAdapter extends BaseExpandableListAdapter {
         SSLesson lesson = (SSLesson) getChild(groupPosition, childPosition);
         LayoutInflater inflater = context.getLayoutInflater();
 
-        view = inflater.inflate(R.layout.ss_menu_lesson, null);
+        view = inflater.inflate(R.layout.ss_menu_lesson, viewGroup, false);
 
         TextView SSMenuLessonDate = (TextView) view.findViewById(R.id.ss_menu_lesson_date);
         TextView SSMenuLessonName = (TextView) view.findViewById(R.id.ss_menu_lesson_name);
