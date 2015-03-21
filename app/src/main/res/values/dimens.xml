@@ -30,6 +30,7 @@
     <dimen name="ss_tab_height">48dp</dimen>
     <dimen name="ss_tab_font_size">12sp</dimen>
 
+    <dimen name="ss_loading_controls_top_margin">20dp</dimen>
     <dimen name="ss_loading_spinner_top_margin">20dp</dimen>
     <dimen name="ss_loading_retry_text_size">12sp</dimen>
     <dimen name="ss_loading_retry_top_padding">4dp</dimen>
@@ -37,7 +38,7 @@
     <dimen name="ss_loading_retry_left_padding">10dp</dimen>
     <dimen name="ss_loading_retry_right_padding">10dp</dimen>
 
-    <dimen name="ss_loading_explainer_top_margin">40dp</dimen>
+    <dimen name="ss_loading_explainer_top_margin">20dp</dimen>
     <dimen name="ss_loading_explainer_text_size">12sp</dimen>
 
     <dimen name="ss_loading_app_title_bottom_margin">20dp</dimen>
