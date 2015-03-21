@@ -125,7 +125,7 @@ public class SSNotification {
                     .addAction(R.drawable.ss_ic_share_white_24dp, context.getString(R.string.ss_notification_share_lesson), _SSPendingShareIntent)
                     .setAutoCancel(true)
                     .setContentIntent(_SSPendingContentIntent)
-                    .setContentText(_SSDay._day_text);
+                    .setContentText(_SSDay._day_name);
 
             _SSNotificationManager.notify(1, _SSNotificationBuilder.build());
         } catch (Exception e) {}
