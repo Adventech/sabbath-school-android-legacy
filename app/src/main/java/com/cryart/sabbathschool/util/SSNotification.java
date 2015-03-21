@@ -91,7 +91,7 @@ public class SSNotification {
 
             _SSShareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             _SSShareIntent.setAction(Intent.ACTION_SEND);
-            _SSShareIntent.putExtra(Intent.EXTRA_TEXT, _SSDay._day_name);
+            _SSShareIntent.putExtra(Intent.EXTRA_TEXT, _SSDay._day_name + " " + SSConstants.SS_SHARE_FB_LINK);
 
             _SSLessonBitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes);
 

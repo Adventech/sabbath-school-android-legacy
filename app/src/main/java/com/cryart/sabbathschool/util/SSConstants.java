@@ -69,4 +69,6 @@ public class SSConstants {
     public static final String SS_NOTIFICATION_TIME_SETTINGS_FORMAT = "hh:mm";
 
     public static final String SS_NOTIFICATION_LESSON_HERO_TMP_FILENAME = "share_lesson.png";
+
+    public static final String SS_SHARE_FB_LINK = "https://www.facebook.com/shabbatschool";
 }
