@@ -83,15 +83,4 @@
         android:textSize="@dimen/ss_loading_explainer_text_size"
         android:text="@string/ss_loading" />
 
-    <TextView
-        android:id="@+id/ss_app_title"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/ss_loading_app_title_bottom_margin"
-        android:layout_width="wrap_content"
-        android:text="@string/ss_app_name"
-        android:textAllCaps="true"
-        android:textColor="@color/ss_loading_app_title_text_color"
-        android:textSize="@dimen/ss_loading_app_title_text_size" />
 </RelativeLayout>
