@@ -85,5 +85,15 @@
                 android:action="android.intent.action.VIEW"
                 android:data="@string/ss_settings_website_intent" />
         </Preference>
+
+        <Preference
+            android:title="@string/ss_settings_facebook_page"
+            android:summary="@string/ss_settings_facebook_page_intent"
+            android:persistent="false"
+            android:selectable="true">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/ss_settings_facebook_page_intent" />
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

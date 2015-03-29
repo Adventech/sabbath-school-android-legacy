@@ -80,6 +80,8 @@
     <string name="ss_settings_open_source_summary">Лицензии на Открытое Программное Обеспечение</string>
     <string name="ss_settings_website">Вебсайт</string>
     <string name="ss_settings_website_intent">http://vitalikl.github.io/ss</string>
+    <string name="ss_settings_facebook_page">Страница на Фейсбук</string>
+    <string name="ss_settings_facebook_page_intent">http://facebook.com/shabbatschool</string>
 
     <string name="ss_settings_version">Версия</string>
 

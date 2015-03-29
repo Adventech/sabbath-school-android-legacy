@@ -80,6 +80,8 @@
     <string name="ss_settings_open_source_summary">License details for open source software</string>
     <string name="ss_settings_website">Website</string>
     <string name="ss_settings_website_intent">http://vitalikl.github.io/ss</string>
+    <string name="ss_settings_facebook_page">Facebook Page</string>
+    <string name="ss_settings_facebook_page_intent">http://facebook.com/shabbatschool</string>
 
     <string name="ss_settings_version">App Version</string>
 
