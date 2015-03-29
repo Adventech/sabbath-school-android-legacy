@@ -31,12 +31,14 @@ public class SSAboutMenu {
     public static final SSAboutMenuItem SS_ABOUT_MENU_INSTAGRAM = new SSAboutMenuItem(R.string.ss_about_menu_instagram_icon, R.string.ss_about_menu_instagram_title);
     public static final SSAboutMenuItem SS_ABOUT_MENU_TWITTER = new SSAboutMenuItem(R.string.ss_about_menu_twitter_icon, R.string.ss_about_menu_twitter_title);
     public static final SSAboutMenuItem SS_ABOUT_MENU_PHOTO_CREDITS = new SSAboutMenuItem(R.string.ss_about_menu_photo_credits_icon, R.string.ss_about_menu_photo_credits_title);
+    public static final SSAboutMenuItem SS_ABOUT_MENU_FACEBOOK_PAGE = new SSAboutMenuItem(R.string.ss_about_menu_facebook_icon, R.string.ss_about_menu_facebook_title);
 
     public static ArrayList<SSAboutMenuItem> getAboutMenuAsArrayList(){
         return new ArrayList<SSAboutMenuItem>(){{
             add(SS_ABOUT_MENU_INSTAGRAM);
             add(SS_ABOUT_MENU_TWITTER);
             add(SS_ABOUT_MENU_PHOTO_CREDITS);
+            add(SS_ABOUT_MENU_FACEBOOK_PAGE);
         }};
     }
 }

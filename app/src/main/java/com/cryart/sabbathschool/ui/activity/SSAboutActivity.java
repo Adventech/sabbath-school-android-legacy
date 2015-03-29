@@ -80,6 +80,13 @@ public class SSAboutActivity extends ActionBarActivity implements AdapterView.On
         } catch (Exception e){}
     }
 
+    private void aboutMenuFacebookPageClick(){
+        try {
+            // TODO: tracking
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(SSConstants.SS_ABOUT_FACEBOOK_PAGE_URL)));
+        } catch (Exception e){}
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -126,6 +133,10 @@ public class SSAboutActivity extends ActionBarActivity implements AdapterView.On
 
         if (_SSAboutMenuItem == SSAboutMenu.SS_ABOUT_MENU_PHOTO_CREDITS) {
             this.aboutMenuPhotoCreditsClick();
+        }
+
+        if (_SSAboutMenuItem == SSAboutMenu.SS_ABOUT_MENU_FACEBOOK_PAGE) {
+            this.aboutMenuFacebookPageClick();
         }
     }
 

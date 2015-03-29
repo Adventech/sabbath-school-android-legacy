@@ -75,6 +75,7 @@
     <string name="ss_settings_notification_enabled">Ежедневные Оповещения</string>
     <string name="ss_settings_notification_enabled_summary">Влючить ежедневные оповещения о текущем уроке Субботней Школы</string>
     <string name="ss_settings_notification_time">Время Оповещения</string>
+
     <string name="ss_settings_open_source_title">Открытое ПО</string>
     <string name="ss_settings_open_source_summary">Лицензии на Открытое Программное Обеспечение</string>
     <string name="ss_settings_website">Вебсайт</string>
@@ -89,6 +90,9 @@
 
     <string name="ss_about_menu_twitter_icon">&#xf099;</string>
     <string name="ss_about_menu_twitter_title">\@vitalik_l</string>
+
+    <string name="ss_about_menu_facebook_icon">&#xf09a;</string>
+    <string name="ss_about_menu_facebook_title">Страница на Фейсбук</string>
 
     <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
     <string name="ss_about_menu_photo_credits_title">За Фото Спасибо \@asimsness</string>

@@ -91,6 +91,9 @@
     <string name="ss_about_menu_twitter_icon">&#xf099;</string>
     <string name="ss_about_menu_twitter_title">\@vitalik_l</string>
 
+    <string name="ss_about_menu_facebook_icon">&#xf09a;</string>
+    <string name="ss_about_menu_facebook_title">Facebook page</string>
+
     <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
     <string name="ss_about_menu_photo_credits_title">Photo Credits \@asimsness</string>
 

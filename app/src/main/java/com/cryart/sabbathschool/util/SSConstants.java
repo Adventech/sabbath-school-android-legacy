@@ -60,6 +60,7 @@ public class SSConstants {
     public static final String SS_ABOUT_INSTAGRAM_URL = "http://instagram.com/p/pfHeT4Nqi9";
     public static final String SS_ABOUT_INSTAGRAM_FALLBACK_URL = "http://instagram.com/v1talique";
     public static final String SS_ABOUT_PHOTO_CREDITS_URL = "http://instagram.com/asimsness";
+    public static final String SS_ABOUT_FACEBOOK_PAGE_URL = "http://facebook.com/shabbatschool";
     public static final long SS_ABOUT_TWITTER_ID = 116854782L;
     public static final String SS_ABOUT_TWITTER_FALLBACK_URL = "https://twitter.com/vitalik_l";
 

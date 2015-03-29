@@ -29,6 +29,13 @@
         <item>Очень Большой</item>
     </string-array>
 
+    <string-array name="ss_settings_text_size_values">
+        <item>small.css</item>
+        <item>medium.css</item>
+        <item>large.css</item>
+        <item>x-large.css</item>
+    </string-array>
+
     <string-array name="ss_settings_lesson_language_entries">
         <item>Английский</item>
         <item>Русский</item>
@@ -36,9 +43,22 @@
         <item>Украинский</item>
     </string-array>
 
+    <string-array name="ss_settings_lesson_language_values">
+        <item>en</item>
+        <item>ru</item>
+        <item>es</item>
+        <item>uk</item>
+    </string-array>
+
     <string-array name="ss_settings_reading_mode_entries">
         <item>Обычный</item>
         <item>Ночной Режим</item>
         <item>Сепия</item>
+    </string-array>
+
+    <string-array name="ss_settings_reading_mode_values">
+        <item>style_normal.css</item>
+        <item>style_dark.css</item>
+        <item>style_sepia.css</item>
     </string-array>
 </resources>
