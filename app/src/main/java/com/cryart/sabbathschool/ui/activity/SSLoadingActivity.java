@@ -115,7 +115,13 @@ public class SSLoadingActivity extends Activity {
             if (ss_core.quarterlyForLanguageExists())
                 return true;
             else {
-                _SSLoadingExplainer.setText(getString(R.string.ss_downloading));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        _SSLoadingExplainer.setText(getString(R.string.ss_downloading));
+                    }
+                });
+
                 return ss_core.downloadIfNeeded();
             }
         }
