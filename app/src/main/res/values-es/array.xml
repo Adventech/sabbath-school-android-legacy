@@ -40,14 +40,12 @@
         <item>Inglés</item>
         <item>Ruso</item>
         <item>Español</item>
-        <item>Ucranio</item>
     </string-array>
 
     <string-array name="ss_settings_lesson_language_values">
         <item>en</item>
         <item>ru</item>
         <item>es</item>
-        <item>uk</item>
     </string-array>
 
     <string-array name="ss_settings_reading_mode_entries">
