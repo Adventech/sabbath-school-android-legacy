@@ -1,0 +1,107 @@
+<!--
+  ~ Copyright (c) 2015 Vitaliy Lim <lim.vitaliy@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<resources>
+    <string name="ss_app_name">Ecole du Sabbat</string>
+    <string name="ss_loading">Loading</string>
+    <string name="ss_downloading">Téléchargement dernière trimestrielle</string>
+    <string name="ss_downloading_error">Erreur de Téléchargement</string>
+    <string name="ss_retry">Refaire</string>
+
+    <string name="ss_notification_read_lesson">Lire Leçon</string>
+    <string name="ss_notification_share_lesson">Partager la Leçon</string>
+
+    <string name="ss_navigation_menu_open">Ouvrir le Menu</string>
+    <string name="ss_navigation_menu_close">Fermer le Menu</string>
+
+    <string name="ss_menu_lesson">Leçon</string>
+
+    <string-array name="ss_tabs">
+        <item>Samedi</item>
+        <item>Dimanche</item>
+        <item>Lundi</item>
+        <item>Mardi</item>
+        <item>Mercredi</item>
+        <item>Jeudi</item>
+        <item>Vendredi</item>
+    </string-array>
+
+    <string name="ss_menu_header_indicator_more">&#xe08c;</string>
+    <string name="ss_menu_header_indicator_less">&#xe08b;</string>
+
+    <string name="ss_menu_misc_settings_icon">&#xe145;</string>
+    <string name="ss_menu_misc_settings_title">Paramètres</string>
+
+    <string name="ss_menu_misc_about_icon">&#xe0bf;</string>
+    <string name="ss_menu_misc_about_title">À Propos</string>
+
+    <string name="ss_webview_menu_highlight">Mettre En Lumière</string>
+    <string name="ss_webview_menu_search">Rechercher</string>
+    <string name="ss_webview_menu_copy">Copie</string>
+    <string name="ss_webview_menu_copied">Copié</string>
+    <string name="ss_webview_menu_share">Part</string>
+    <string name="ss_webview_menu_share_text_to">Partager sélection de</string>
+    <string name="ss_webview_menu_remove_highlight">Retirer Surbrillance</string>
+
+    <string name="ss_bible_verse_activity_title">Verset de la Bible</string>
+
+    <string name="ss_setings">Paramètres</string>
+    <string name="ss_settings_general">Général</string>
+    <string name="ss_settings_text_size">Taille du texte</string>
+    <string name="ss_settings_ken_burns">Effet de Ken Burns</string>
+    <string name="ss_settings_ken_burns_summary">L\'image sélectionnée flottant sur l\'écran principal</string>
+    <string name="ss_settings_lesson_language">Langue de la Leçon</string>
+    <string name="ss_settings_reading_mode">Mode de Lecture</string>
+    <string name="ss_settings_notification_enabled">Notification Journalière</string>
+    <string name="ss_settings_notification_enabled_summary">Vérifiez pour activer la notification quotidienne propos leçon d\'école du sabbat</string>
+    <string name="ss_settings_notification_time">Heure de Notification</string>
+
+    <string name="ss_settings_about">À Propos</string>
+    <string name="ss_settings_open_source_title">Licences Open Source</string>
+    <string name="ss_settings_open_source_summary">Informations relatives à la licence pour les logiciels et les polices Open Source</string>
+    <string name="ss_settings_website">Site Internet</string>
+    <string name="ss_settings_website_intent">http://vitalikl.github.io/ss</string>
+    <string name="ss_settings_facebook_page">Page Facebook</string>
+    <string name="ss_settings_facebook_page_intent">http://facebook.com/shabbatschool</string>
+
+    <string name="ss_settings_version">Version de l\'application</string>
+
+    <string name="ss_about">À Propos</string>
+    <string name="ss_about_love_your_neighbor">ואהבת לרעך כמוך</string>
+    <string name="ss_about_menu_instagram_icon">&#xf16d;</string>
+    <string name="ss_about_menu_instagram_title">\@v1talique</string>
+
+    <string name="ss_about_menu_twitter_icon">&#xf099;</string>
+    <string name="ss_about_menu_twitter_title">\@vitalik_l</string>
+
+    <string name="ss_about_menu_facebook_icon">&#xf09a;</string>
+    <string name="ss_about_menu_facebook_title">Page Facebook</string>
+
+    <string name="ss_about_menu_photo_credits_icon">&#xf16d;</string>
+    <string name="ss_about_menu_photo_credits_title">Crédits photos \@asimsness</string>
+
+    <string name="rate_dialog_title">Évaluer l\'école du sabbat</string>
+    <string name="rate_dialog_message">Si vous aimez l\'école du sabbat, cela vous dérangerait de prendre un moment pour noter? Merci pour votre aide!</string>
+    <string name="rate_dialog_ok">Évaluer</string>
+    <string name="rate_dialog_cancel">Plus tard</string>
+    <string name="rate_dialog_no">Non</string>
+</resources>
