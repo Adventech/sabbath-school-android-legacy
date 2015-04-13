@@ -23,10 +23,10 @@
 
 <resources>
     <string-array name="ss_settings_text_size_entries">
-        <item>Pequeño</item>
-        <item>Medio</item>
-        <item>Grande</item>
-        <item>Mas Grande</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>Extra Large</item>
     </string-array>
 
     <string-array name="ss_settings_text_size_values">
@@ -37,11 +37,11 @@
     </string-array>
 
     <string-array name="ss_settings_lesson_language_entries">
-        <item>Inglés</item>
-        <item>Francés</item>
-        <item>Portugués</item>
-        <item>Ruso</item>
-        <item>Español</item>
+        <item>Inglês</item>
+        <item>Francês</item>
+        <item>Português</item>
+        <item>Russo</item>
+        <item>Espanhol</item>
     </string-array>
 
     <string-array name="ss_settings_lesson_language_values">
@@ -54,7 +54,7 @@
 
     <string-array name="ss_settings_reading_mode_entries">
         <item>Regular</item>
-        <item>Modo Nocturno</item>
+        <item>Modo Noturno</item>
         <item>Sepia</item>
     </string-array>
 

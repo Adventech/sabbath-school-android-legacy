@@ -39,6 +39,7 @@
     <string-array name="ss_settings_lesson_language_entries">
         <item>Английский</item>
         <item>Французский</item>
+        <item>Португальский</item>
         <item>Русский</item>
         <item>Испанский</item>
     </string-array>
@@ -46,6 +47,7 @@
     <string-array name="ss_settings_lesson_language_values">
         <item>en</item>
         <item>fr</item>
+        <item>pt</item>
         <item>ru</item>
         <item>es</item>
     </string-array>
