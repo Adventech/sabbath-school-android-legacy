@@ -41,6 +41,7 @@
         <item>Francês</item>
         <item>Português</item>
         <item>Russo</item>
+        <item>Ucraniano</item>
         <item>Espanhol</item>
     </string-array>
 
@@ -49,6 +50,7 @@
         <item>fr</item>
         <item>pt</item>
         <item>ru</item>
+        <item>uk</item>
         <item>es</item>
     </string-array>
 

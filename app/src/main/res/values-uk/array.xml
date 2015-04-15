@@ -23,10 +23,10 @@
 
 <resources>
     <string-array name="ss_settings_text_size_entries">
-        <item>Pequeño</item>
-        <item>Medio</item>
-        <item>Grande</item>
-        <item>Mas Grande</item>
+        <item>Невеликий</item>
+        <item>Середній</item>
+        <item>Великий</item>
+        <item>Дуже Великий</item>
     </string-array>
 
     <string-array name="ss_settings_text_size_values">
@@ -37,12 +37,12 @@
     </string-array>
 
     <string-array name="ss_settings_lesson_language_entries">
-        <item>Inglés</item>
-        <item>Francés</item>
-        <item>Portugués</item>
-        <item>Ruso</item>
-        <item>Ucranio</item>
-        <item>Español</item>
+        <item>Англійська</item>
+        <item>Французький</item>
+        <item>Португальська</item>
+        <item>Російська</item>
+        <item>Український</item>
+        <item>Іспанська</item>
     </string-array>
 
     <string-array name="ss_settings_lesson_language_values">
@@ -55,9 +55,9 @@
     </string-array>
 
     <string-array name="ss_settings_reading_mode_entries">
-        <item>Regular</item>
-        <item>Modo Nocturno</item>
-        <item>Sepia</item>
+        <item>Звичайний</item>
+        <item>Нічний режим</item>
+        <item>Сепія</item>
     </string-array>
 
     <string-array name="ss_settings_reading_mode_values">
