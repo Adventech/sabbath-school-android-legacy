@@ -48,6 +48,14 @@ public class SSLoadingActivity extends Activity {
     ProgressBar _SSLoadingSpinner;
     Button _SSLoadingRetry;
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     private void setupWidgets(){
         _SSLoadingSpinner = (ProgressBar) findViewById(R.id.ss_loading_spinner);
         _SSLoadingExplainer = (TextView) findViewById(R.id.ss_loading_explainer);
