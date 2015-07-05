@@ -43,6 +43,7 @@
         <item>Russe</item>
         <item>Ukrainien</item>
         <item>Espagnol</item>
+        <item>Allemand</item>
     </string-array>
 
     <string-array name="ss_settings_lesson_language_values">
@@ -52,6 +53,7 @@
         <item>ru</item>
         <item>uk</item>
         <item>es</item>
+        <item>de</item>
     </string-array>
 
     <string-array name="ss_settings_reading_mode_entries">
