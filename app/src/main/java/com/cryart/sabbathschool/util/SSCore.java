@@ -261,7 +261,7 @@ public class SSCore extends SQLiteOpenHelper {
 
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet("https://s3-us-west-2.amazonaws.com/com.cryart.sabbathschool/latest_" + LANGUAGE + ".json?"+String.valueOf(System.currentTimeMillis()));
+            HttpGet httpGet = new HttpGet("https://s3-us-west-2.amazonaws.com/com.cryart.sabbathschool/tmp_latest_" + LANGUAGE + ".json?"+String.valueOf(System.currentTimeMillis()));
             HttpResponse httpResponse = httpClient.execute(httpGet);
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
