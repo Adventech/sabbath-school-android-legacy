@@ -65,6 +65,7 @@ import java.util.LinkedHashMap;
 
 import hotchemi.android.rate.AppRate;
 
+
 public class SSMainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback {
     private int SS_TOOLBAR_STATUS_BAR_ALPHA = 0;
 
@@ -217,7 +218,10 @@ public class SSMainActivity extends AppCompatActivity implements ExpandableListV
 
         AppRate.with(this).setInstallDays(SSConstants.SS_APP_RATE_INSTALL_DAYS).monitor();
         AppRate.showRateDialogIfMeetsConditions(this);
+
+        setToolbarStatusBarAlpha(SS_TOOLBAR_STATUS_BAR_ALPHA);
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
