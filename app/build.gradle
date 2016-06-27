@@ -23,8 +23,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+    useLibrary  'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.cryart.sabbathschool"
@@ -43,9 +44,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:21.+'
-    compile 'com.android.support:support-v13:21.+'
-    compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:support-v13:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.flaviofaria:kenburnsview:1.0.5'
     compile 'com.google.android.gms:play-services-analytics:8.3.0'
     compile 'com.github.hotchemi:android-rate:0.4.+'

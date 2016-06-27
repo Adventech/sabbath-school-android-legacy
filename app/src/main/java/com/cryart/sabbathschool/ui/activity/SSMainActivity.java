@@ -30,13 +30,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,8 +65,8 @@ import java.util.LinkedHashMap;
 
 import hotchemi.android.rate.AppRate;
 
-public class SSMainActivity extends ActionBarActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback {
-    private float SS_TOOLBAR_STATUS_BAR_ALPHA = (float)0.1;
+public class SSMainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback {
+    private int SS_TOOLBAR_STATUS_BAR_ALPHA = 0;
 
     private SharedPreferences _SSPreferences;
     private Handler _SSHandler = new Handler();
@@ -142,20 +142,19 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         );
     }
 
-    public void setToolbarStatusBarAlpha(float ratio){
+    public void setToolbarStatusBarAlpha(int alpha){
         int color = _SSToolbarTitle.getCurrentTextColor();
-        int alpha = (int)(ratio * 255);
 
         SS_TOOLBAR_STATUS_BAR_ALPHA = alpha;
         _SSToolbar.getBackground().setAlpha(alpha);
-        _SSStatusBar.setAlpha(ratio);
+        _SSStatusBar.getBackground().mutate().setAlpha(alpha);
         _SSToolbarTitle.setTextColor(Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color)));
     }
 
     @Override
     public void onBackPressed() {
-        if (_SSDrawerLayout.isDrawerOpen(Gravity.START)){
-            _SSDrawerLayout.closeDrawer(Gravity.START);
+        if (_SSDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            _SSDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
@@ -189,7 +188,7 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         _SSActionBarToggle.setDrawerIndicatorEnabled(true);
 
         _SSDrawerLayout.setDrawerListener(_SSActionBarToggle);
-        _SSDrawerLayout.setDrawerShadow(R.drawable.ss_menu_shadow, Gravity.START);
+        _SSDrawerLayout.setDrawerShadow(R.drawable.ss_menu_shadow, GravityCompat.START);
 
         _SSCurrentLesson = _SSCore.ssGetTodaysLesson();
         _SSDays = _SSCore.ssGetDaysByLessonSerial(_SSCurrentLesson._serial);
@@ -218,12 +217,6 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
 
         AppRate.with(this).setInstallDays(SSConstants.SS_APP_RATE_INSTALL_DAYS).monitor();
         AppRate.showRateDialogIfMeetsConditions(this);
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-        setToolbarStatusBarAlpha((float)0.2);
     }
 
     @Override
@@ -367,7 +360,7 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         int headerHeight = _SSHero.getHeight() - _SSToolbar.getHeight() - _SSStatusBar.getHeight();
         final float ratio = (float) Math.min(Math.max(scrollY * -1, 0), headerHeight) / headerHeight;
 
-        setToolbarStatusBarAlpha(ratio);
+        setToolbarStatusBarAlpha((int)(ratio * 255));
 
         int scrollOtherFragments = scrollY * -1;
         if (_SSTabs.getTop() + scrollY < _SSToolbar.getHeight() + _SSStatusBar.getHeight()) {

@@ -51,7 +51,8 @@
             android:label="@string/ss_app_name"
             android:configChanges="orientation|screenSize"
             android:name=".ui.activity.SSMainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize">
+        </activity>
 
         <activity
             android:label="@string/ss_app_name"

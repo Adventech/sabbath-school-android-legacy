@@ -70,7 +70,7 @@ public class SSHelper {
     public static int getStatusBarHeight(Context context) {
         int result = 0;
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (resourceId > 0) {
                 result = context.getResources().getDimensionPixelSize(resourceId);
