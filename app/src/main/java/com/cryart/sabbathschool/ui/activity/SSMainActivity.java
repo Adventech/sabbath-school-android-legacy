@@ -66,7 +66,7 @@ import java.util.LinkedHashMap;
 import hotchemi.android.rate.AppRate;
 
 public class SSMainActivity extends ActionBarActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback {
-    private int SS_TOOLBAR_STATUS_BAR_ALPHA = 0;
+    private float SS_TOOLBAR_STATUS_BAR_ALPHA = (float)0.1;
 
     private SharedPreferences _SSPreferences;
     private Handler _SSHandler = new Handler();
@@ -142,12 +142,13 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         );
     }
 
-    public void setToolbarStatusBarAlpha(int alpha){
+    public void setToolbarStatusBarAlpha(float ratio){
         int color = _SSToolbarTitle.getCurrentTextColor();
+        int alpha = (int)(ratio * 255);
 
         SS_TOOLBAR_STATUS_BAR_ALPHA = alpha;
         _SSToolbar.getBackground().setAlpha(alpha);
-        _SSStatusBar.getBackground().setAlpha(alpha);
+        _SSStatusBar.setAlpha(ratio);
         _SSToolbarTitle.setTextColor(Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color)));
     }
 
@@ -204,7 +205,6 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         _SSTabs.setCustomTabView(R.layout.ss_tab_indicator, android.R.id.text1);
         _SSTabs.setViewPager(_SSPager);
 
-        setToolbarStatusBarAlpha(SS_TOOLBAR_STATUS_BAR_ALPHA);
         _SSTabs.setBackgroundColor(getResources().getColor(R.color.ss_primary));
 
         _SSMenu.setAdapter(new SSMenuAdapter(this, new LinkedHashMap<Object, ArrayList<?>>()));
@@ -218,6 +218,12 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
 
         AppRate.with(this).setInstallDays(SSConstants.SS_APP_RATE_INSTALL_DAYS).monitor();
         AppRate.showRateDialogIfMeetsConditions(this);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        setToolbarStatusBarAlpha((float)0.2);
     }
 
     @Override
@@ -359,9 +365,9 @@ public class SSMainActivity extends ActionBarActivity implements ExpandableListV
         _SSHero.setTranslationY(scrollY * 0.5f);
 
         int headerHeight = _SSHero.getHeight() - _SSToolbar.getHeight() - _SSStatusBar.getHeight();
-        float ratio = (float) Math.min(Math.max(scrollY * -1, 0), headerHeight) / headerHeight;
+        final float ratio = (float) Math.min(Math.max(scrollY * -1, 0), headerHeight) / headerHeight;
 
-        setToolbarStatusBarAlpha((int) (ratio * 255));
+        setToolbarStatusBarAlpha(ratio);
 
         int scrollOtherFragments = scrollY * -1;
         if (_SSTabs.getTop() + scrollY < _SSToolbar.getHeight() + _SSStatusBar.getHeight()) {
