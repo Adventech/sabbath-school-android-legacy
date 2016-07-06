@@ -35,10 +35,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
@@ -66,7 +69,7 @@ import java.util.LinkedHashMap;
 import hotchemi.android.rate.AppRate;
 
 
-public class SSMainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback {
+public class SSMainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupClickListener, SharedPreferences.OnSharedPreferenceChangeListener, SSWebView.OnScrollChangedCallback, SSWebView.OnStartActionModeCallback, SSWebView.OnTouchCallback {
     private int SS_TOOLBAR_STATUS_BAR_ALPHA = 0;
 
     private SharedPreferences _SSPreferences;
@@ -74,17 +77,21 @@ public class SSMainActivity extends AppCompatActivity implements ExpandableListV
 
     private ActionBarDrawerToggle _SSActionBarToggle;
     private DrawerLayout _SSDrawerLayout;
-    private SSSlidingTabLayout _SSTabs;
-    private Toolbar _SSToolbar;
+    public SSSlidingTabLayout _SSTabs;
+    public Toolbar _SSToolbar;
     private TextView _SSToolbarTitle;
     private ViewPager _SSPager;
-    private View _SSStatusBar;
+    public View _SSStatusBar;
     private ExpandableListView _SSMenu;
     private KenBurnsView _SSHero;
+    public CardView _SSFloatingMenu;
 
     private SSLesson _SSCurrentLesson;
     private ArrayList<SSDay> _SSDays;
     private SSCore _SSCore;
+
+    private float LastTouchY = 0;
+    private float LastTouchX = 0;
 
     private void setupWidgets(){
         _SSDrawerLayout = (DrawerLayout) findViewById(R.id.ss_main_layout);
@@ -95,6 +102,8 @@ public class SSMainActivity extends AppCompatActivity implements ExpandableListV
         _SSTabs = (SSSlidingTabLayout) findViewById(R.id.ss_tabs);
         _SSMenu = (ExpandableListView) findViewById(R.id.ss_menu);
         _SSHero = (KenBurnsView) findViewById(R.id.ss_hero);
+
+        _SSFloatingMenu = (CardView) findViewById(R.id.ss_floating_menu);
 
         _SSCore = SSCore.getInstance(this);
         _SSPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -382,4 +391,45 @@ public class SSMainActivity extends AppCompatActivity implements ExpandableListV
             ((SSWebViewFragment) (registeredFragments.get(i)))._SSWebView._SSOnScrollChangedCallbackEnabled = true;
         }
     }
+
+    public void setFloatingMenuXY(float x, float y){
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) _SSFloatingMenu.getLayoutParams();
+        params.setMargins((int)x - 230, (int)y - 140, 0, 0);
+        _SSFloatingMenu.setLayoutParams(params);
+    }
+
+    @Override
+    public void onStartActionMode(){
+        Log.d("WEB_VIEW", "START");
+        setFloatingMenuXY(LastTouchX, LastTouchY);
+        _SSFloatingMenu.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onStopActionMode(){
+        Log.d("WEB_VIEW", "STOP");
+        _SSFloatingMenu.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onTouch(MotionEvent event){
+        if (event.getAction() == MotionEvent.ACTION_DOWN){
+            LastTouchY = event.getY();
+            LastTouchX = event.getX();
+
+            Log.d("WEB_VIEW", "X: " + String.valueOf(event.getX()) + ", Y: " + String.valueOf(event.getY()));
+        }
+
+    }
+
+
+//    public void hideCardView(){
+//        Log.d("WEB_VIEW", "BLAH");
+//        findViewById(R.id.ss_floating_menu).setVisibility(View.INVISIBLE);
+//    }
+//
+//    public void showCardView(){
+//        Log.d("WEB_VIEW", "BLAH");
+//        findViewById(R.id.ss_floating_menu).setVisibility(View.VISIBLE);
+//    }
 }

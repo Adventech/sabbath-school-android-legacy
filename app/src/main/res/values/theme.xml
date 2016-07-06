@@ -25,12 +25,21 @@
     <style name="SSAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowFullscreen">false</item>
+        <item name="actionModeStyle">@style/ActionMode</item>
+        <item name="actionModeBackground">@color/ss_primary_cab</item>
+        <item name="android:actionModeBackground">@color/ss_primary_cab</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
     <style name="SSToolbar" parent="Theme.AppCompat.NoActionBar">
         <item name="actionModeBackground">@color/ss_primary_cab</item>
+
+
+
+
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="android:actionModeBackground">@color/ss_primary_cab</item>
+
+        <!--<item name="android:actionModeBackground">@color/ss_primary_cab</item>-->
 
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small.Inverse</item>
         <item name="android:textSize">@dimen/ss_toolbar_font_size</item>

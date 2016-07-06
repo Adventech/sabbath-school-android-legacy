@@ -20,4 +20,9 @@
   ~ THE SOFTWARE.
   -->
 
-<resources/>
+<resources>
+    <style name="ActionMode" parent="Widget.AppCompat.ActionMode">
+        <item name="android:background">@color/ss_primary_cab</item>
+        <item name="background">@color/ss_primary_cab</item>
+    </style>
+</resources>

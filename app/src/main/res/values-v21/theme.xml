@@ -24,8 +24,10 @@
 <resources>
     <style name="SSAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/ss_primary</item>
-        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowFullscreen">false</item>
+        <item name="android:actionModeBackground">@color/ss_primary_cab</item>
+        <item name="android:actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 </resources>

@@ -52,6 +52,7 @@
             android:configChanges="orientation|screenSize"
             android:name=".ui.activity.SSMainActivity"
             android:windowSoftInputMode="adjustResize">
+
         </activity>
 
         <activity

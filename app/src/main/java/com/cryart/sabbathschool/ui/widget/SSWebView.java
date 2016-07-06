@@ -23,37 +23,49 @@
 package com.cryart.sabbathschool.ui.widget;
 
 import android.content.Context;
-import android.view.ActionMode;
+import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.ViewParent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebView;
 
-import com.cryart.sabbathschool.R;
-
 public class SSWebView extends WebView {
-    private ActionMode _SSActionMode;
-    private ActionMode.Callback _SSActionModeCallback;
+    public final Handler h = new Handler();
+    public final int delay = 1000;
+    public boolean actionModeOn = false;
+
     public boolean _SSOnScrollChangedCallbackEnabled = true;
 
     protected Context _SSContext;
     private OnScrollChangedCallback _SSOnScrollChangedCallback;
+    private OnStartActionModeCallback _SSOnStartActionModeCallback;
+    private OnTouchCallback _SSOnTouchCallback;
 
     public SSWebView(final Context context) {
         super(context);
         _SSContext = context;
+
     }
 
     public SSWebView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
         _SSContext = context;
+
     }
 
     public SSWebView(final Context context, final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
         _SSContext = context;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        _SSOnTouchCallback.onTouch(event);
+        requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(event);
     }
 
     @Override
@@ -68,62 +80,87 @@ public class SSWebView extends WebView {
         _SSOnScrollChangedCallback = onScrollChangedCallback;
     }
 
+    public void setOnStartActionModeCallback(final OnStartActionModeCallback onStartActionModeCallback) {
+        _SSOnStartActionModeCallback = onStartActionModeCallback;
+    }
+
+    public void setOnTouchCallback(final OnTouchCallback onTouchCallback) {
+        _SSOnTouchCallback = onTouchCallback;
+    }
+
     public static interface OnScrollChangedCallback {
         public void onScrollChanged(int deltaX, int deltaY, int scrollY);
     }
 
+    public static interface OnStartActionModeCallback {
+        public void onStartActionMode();
+        public void onStopActionMode();
+    }
+
+    public static interface OnTouchCallback {
+        public void onTouch(MotionEvent event);
+    }
+
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
-        ViewParent parent = getParent();
-        if (parent == null) {
-            return null;
-        }
-        _SSActionModeCallback = new SSActionModeCallback();
-        return parent.startActionModeForChild(this, _SSActionModeCallback);
-    }
+        actionModeOn = true;
+        _SSOnStartActionModeCallback.onStartActionMode();
 
-    private class SSActionModeCallback implements ActionMode.Callback {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            MenuInflater inflater = mode.getMenuInflater();
-            inflater.inflate(R.menu.ss_webview_menu, menu);
-            return true;
-        }
+        final WebView v = this;
 
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
 
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.ss_webview_menu_highlight:
-                    loadUrl("javascript:ss.highlight();");
-                    break;
-                case R.id.ss_webview_menu_highlight_remove:
-                    loadUrl("javascript:ss.unHighlight();");
-                    break;
-                case R.id.ss_webview_menu_copy:
-                    loadUrl("javascript:ss.copy();");
-                    break;
-                case R.id.ss_webview_menu_share:
-                    loadUrl("javascript:ss.share();");
-                    break;
-                case R.id.ss_webview_menu_search:
-                    loadUrl("javascript:ss.search();");
-                    break;
-                default:
-                    return false;
+        h.postDelayed(new Runnable(){
+            public void run(){
+                v.loadUrl("javascript:ss.getCoord()");
+
+                if (actionModeOn) {
+                    h.postDelayed(this, delay);
+                }
             }
-            mode.finish();
-            return true;
-        }
+        }, delay);
 
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            clearFocus();
-            _SSActionMode = null;
-        }
+        return this.emptyActionMode();
     }
+
+    @Override
+    public ActionMode startActionMode(ActionMode.Callback callback, int type) {
+        actionModeOn = true;
+        _SSOnStartActionModeCallback.onStartActionMode();
+
+        final WebView v = this;
+
+
+        h.postDelayed(new Runnable(){
+            public void run(){
+                v.loadUrl("javascript:ss.getCoord()");
+                if (actionModeOn) {
+                    h.postDelayed(this, delay);
+                }
+            }
+        }, delay);
+
+
+        return this.emptyActionMode();
+    }
+
+    public ActionMode emptyActionMode() {
+        return new ActionMode() {
+            @Override public void setTitle(CharSequence title) {}
+            @Override public void setTitle(int resId) {}
+            @Override public void setSubtitle(CharSequence subtitle) {}
+            @Override public void setSubtitle(int resId) {}
+            @Override public void setCustomView(View view) {}
+            @Override public void invalidate() {
+                _SSOnStartActionModeCallback.onStopActionMode();
+            }
+            @Override public void finish() {}
+            @Override public Menu getMenu() { return null; }
+            @Override public CharSequence getTitle() { return null; }
+            @Override public CharSequence getSubtitle() { return null; }
+            @Override public View getCustomView() { return null; }
+            @Override public MenuInflater getMenuInflater() { return null; }
+
+        };
+    }
+
 }

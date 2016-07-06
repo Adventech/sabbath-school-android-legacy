@@ -33,8 +33,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -64,6 +65,10 @@ public class SSWebViewFragment extends Fragment {
     private KenBurnsView _SSHero;
     private ProgressBar _SSWebViewLoading;
 
+    private int lastTop = 0;
+
+//    private CardView _SSFloatingMenu;
+
     public SSWebView _SSWebView;
 
     public static SSWebViewFragment newInstance(String _SSDayDate) {
@@ -88,6 +93,16 @@ public class SSWebViewFragment extends Fragment {
                     .replaceAll(SSConstants.SS_SETTINGS_READING_MODE_DEFAULT_VALUE, _SSPreferences.getString(SSConstants.SS_SETTINGS_READING_MODE_KEY, SSConstants.SS_SETTINGS_READING_MODE_DEFAULT_VALUE))
                     .replaceAll("<div class=\"wrapper\">", "<div class=\"wrapper\" style=\"margin-top: " + (SSConstants.TOPBAR_PADDING - SSHelper.convertPixelsToDp(getActivity(), SSHelper.getStatusBarHeight(getActivity()))) + "px\">" + _SSDay._day_text),
                 "text/html", "utf-8", null);
+
+        _SSWebView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    _SSWebView.loadUrl("javascript:ss.getCoord();");
+                }
+                return false;
+            }
+        });
     }
 
     protected void setHighlights(String highlights){
@@ -134,6 +149,7 @@ public class SSWebViewFragment extends Fragment {
 
         _SSWebView.addJavascriptInterface(new SSWebInterface(getActivity()), "SSBridge");
         _SSWebView.getSettings().setJavaScriptEnabled(true);
+
         _SSWebView.setWebViewClient(new WebViewClient() {
             public void onPageFinished(WebView view, String url) {
                 _SSWebViewLoading.setVisibility(View.INVISIBLE);
@@ -143,13 +159,19 @@ public class SSWebViewFragment extends Fragment {
                 setComments(_SSDay._day_comments);
             }
         });
+//        _SSFloatingMenu = (CardView) _view.findViewById(R.id.ss_floating_menu);
+
 
         this.loadDay(_SSDayDate);
 
         _SSWebView.setOnScrollChangedCallback((SSMainActivity)getActivity());
-        ((AppCompatActivity)getActivity()).getDelegate().setHandleNativeActionModesEnabled(false);
-
+        _SSWebView.setOnStartActionModeCallback((SSMainActivity)getActivity());
+        _SSWebView.setOnTouchCallback((SSMainActivity)getActivity());
         return _view;
+    }
+//
+    public void onDestroyActionMode(android.view.ActionMode mode) {
+        Log.d("WEB_VIEW", "DESOTRY");
     }
 
     private class SSWebInterface {
@@ -216,6 +238,34 @@ public class SSWebViewFragment extends Fragment {
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.ss_webview_menu_share_text_to)));
             } catch (Exception e){}
         }
-    }
 
+        @JavascriptInterface
+        public void selectionCoord(final String selectionCoord){
+
+            Log.d("WEB_VIEW", selectionCoord);
+
+            try {
+                if (selectionCoord.equalsIgnoreCase("nope")){
+                    ((SSMainActivity) _SSContext).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((SSMainActivity)_SSContext).onStopActionMode();
+                            _SSWebView.actionModeOn = false;
+                        }
+                    });
+                } else {
+                    ((SSMainActivity) _SSContext).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (((SSMainActivity) _SSContext)._SSFloatingMenu.getVisibility() == View.INVISIBLE){
+                                    ((SSMainActivity) _SSContext).onStartActionMode();
+                                }
+                            } catch (Exception e){}
+                        }
+                    });
+                }
+            } catch (Exception e) { }
+        }
+    }
 }
